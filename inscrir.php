@@ -3,8 +3,6 @@ include('config/bdd.php');
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Start output buffering
-    ob_start();
 
     // Retrieve the form data
     $nom = $_POST["nom"];
@@ -22,7 +20,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the statement
     if ($stmt->execute()) {
-        echo "Form data saved successfully.";
+        // Generate PDF file
+        require('fpdf/fpdf.php');
+
+        // Create a new PDF instance
+        $pdf = new FPDF();
+        $pdf->AddPage();
+
+        // Set font and size
+        $pdf->SetFont('Arial', 'B', 14);
+
+        // Output form data
+        $pdf->Cell(0, 10, 'Form Data', 0, 1, 'C');
+        $pdf->Ln(10);
+
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(40, 10, 'Nom:', 0);
+        $pdf->Cell(0, 10, $nom, 0, 1);
+
+        $pdf->Cell(40, 10, 'Prénom:', 0);
+        $pdf->Cell(0, 10, $prenom, 0, 1);
+
+        $pdf->Cell(40, 10, 'Email:', 0);
+        $pdf->Cell(0, 10, $email, 0, 1);
+
+        $pdf->Cell(40, 10, 'Date de Naissance:', 0);
+        $pdf->Cell(0, 10, $dateNaissance, 0, 1);
+
+        $pdf->Cell(40, 10, 'Lieu de Naissance:', 0);
+        $pdf->Cell(0, 10, $lieuNaissance, 0, 1);
+
+        $pdf->Cell(40, 10, 'Numéro Téléphone:', 0);
+        $pdf->Cell(0, 10, $numeroTelephone, 0, 1);
+
+        $pdf->Cell(40, 10, 'Adresse:', 0);
+        $pdf->Cell(0, 10, $adresse, 0, 1);
+
+        // Save PDF file
+        $pdf->Output('form_data.pdf', 'D');
+
+        // Redirect to another page
+        // header("Location: index.php");
+        // exit();
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -30,50 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Close the statement and database connection
     $stmt->close();
     $conn->close();
-
-    // Generate PDF file
-    require('fpdf/fpdf.php');
-
-    // Create a new PDF instance
-    $pdf = new FPDF();
-    $pdf->AddPage();
-
-    // Set font and size
-    $pdf->SetFont('Arial', 'B', 14);
-
-    // Output form data
-    $pdf->Cell(0, 10, 'Form Data', 0, 1, 'C');
-    $pdf->Ln(10);
-
-    $pdf->SetFont('Arial', '', 12);
-    $pdf->Cell(40, 10, 'Nom:', 0);
-    $pdf->Cell(0, 10, $nom, 0, 1);
-
-    $pdf->Cell(40, 10, 'Prénom:', 0);
-    $pdf->Cell(0, 10, $prenom, 0, 1);
-
-    $pdf->Cell(40, 10, 'Email:', 0);
-    $pdf->Cell(0, 10, $email, 0, 1);
-
-    $pdf->Cell(40, 10, 'Date de Naissance:', 0);
-    $pdf->Cell(0, 10, $dateNaissance, 0, 1);
-
-    $pdf->Cell(40, 10, 'Lieu de Naissance:', 0);
-    $pdf->Cell(0, 10, $lieuNaissance, 0, 1);
-
-    $pdf->Cell(40, 10, 'Numéro Téléphone:', 0);
-    $pdf->Cell(0, 10, $numeroTelephone, 0, 1);
-
-    $pdf->Cell(40, 10, 'Adresse:', 0);
-    $pdf->Cell(0, 10, $adresse, 0, 1);
-
-    // Save PDF file
-    $pdf->Output('form_data.pdf', 'D');
-
-    // Clear the output buffer
-    ob_end_clean();
 }
 ?>
+
 <?php include('layouts/header.html'); ?>
 
 <div class="container">
