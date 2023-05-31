@@ -1,6 +1,6 @@
 <?php
 // Inclure la configuration de la base de données
-include("../config.php");
+require_once '../../config/bdd.php';
 
 // Vérifier si l'ID du participant est passé en paramètre d'URL
 if (isset($_GET["id"])) {

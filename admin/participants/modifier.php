@@ -1,6 +1,6 @@
 <?php
 // Inclure la configuration de la base de données
-include("../config.php");
+require_once '../../config/bdd.php';
 
 // Récupérer l'ID du participant à modifier
 if (isset($_GET["id"])) {

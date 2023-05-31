@@ -1,6 +1,6 @@
 <?php
 // Inclure la configuration de la base de données
-include("../config.php");
+require_once '../../config/bdd.php';
 
 // Récupérer la liste des ateliers
 $stmtAte = $conn->prepare("SELECT ID_ate, Nom_ate FROM ateliers");

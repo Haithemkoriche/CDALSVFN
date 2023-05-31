@@ -1,6 +1,6 @@
 <?php
 // Inclure la configuration de la base de données
-include("../config.php");
+require_once '../../config/bdd.php';
 
 // Préparer et exécuter la requête pour récupérer la liste des participants avec les informations des clés étrangères
 $stmt = $conn->prepare("SELECT participants.*, ateliers.Nom_ate, evenements.Nom_E, groups.Nom_grp FROM participants LEFT JOIN ateliers ON participants.ID_ate_foreign = ateliers.ID_ate LEFT JOIN evenements ON participants.ID_E_foreign = evenements.ID_E LEFT JOIN groups ON participants.ID_grp_foreign = groups.ID_grp");
