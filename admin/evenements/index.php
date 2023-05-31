@@ -10,8 +10,11 @@ $result = $stmt->get_result();
 
 <?php include("../layout.php"); ?>
 <div class="container">
-    <h2>Liste des événements</h2>
-    <table class="table">
+    <div class="row d-flex justify-content-between mt-2 mb-2">
+        <h2>Liste des événements</h2>
+        <a href="ajouter.php" class="btn btn-primary">Ajouter un evenement</a>
+    </div>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Intitulé</th>

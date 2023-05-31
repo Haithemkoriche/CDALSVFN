@@ -29,7 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérifier si l'insertion a réussi
     if ($stmt->affected_rows > 0) {
-        echo "Atelier enregistré avec succès!";
+        header("location: index.php");
+        exit();
     } else {
         echo "Une erreur s'est produite lors de l'enregistrement de l'atelier.";
     }
@@ -56,25 +57,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="image">Image :</label>
             <input type="file" class="form-control-file" name="image" id="image">
         </div>
-            <div class="form-group">
-                <label for="formateur">Formateur :</label>
-                <select class="form-control" name="formateur" id="formateur">
-                    <?php
+        <div class="form-group">
+            <label for="formateur">Formateur :</label>
+            <select class="form-control" name="formateur" id="formateur">
+                <?php
 
-                    // Récupérer tous les formateurs de la base de données
-                    $formateursSql = "SELECT * FROM formateurs";
-                    $formateursResult = mysqli_query($conn, $formateursSql);
+                // Récupérer tous les formateurs de la base de données
+                $formateursSql = "SELECT * FROM formateurs";
+                $formateursResult = mysqli_query($conn, $formateursSql);
 
-                    // Afficher les options du select avec les formateurs
-                    while ($formateur = mysqli_fetch_assoc($formateursResult)) {
-                        echo '<option value="' . $formateur['ID_form'] . '">' . $formateur['Nom_form'] . '</option>';
-                    }
+                // Afficher les options du select avec les formateurs
+                while ($formateur = mysqli_fetch_assoc($formateursResult)) {
+                    echo '<option value="' . $formateur['ID_form'] . '">' . $formateur['Nom_form'] . '</option>';
+                }
 
-                    // Fermer la ressource
-                    mysqli_free_result($formateursResult);
-                    ?>
-                </select>
-            </div>
+                // Fermer la ressource
+                mysqli_free_result($formateursResult);
+                ?>
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
 </div>

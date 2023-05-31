@@ -3,19 +3,19 @@
 require_once '../../config/bdd.php';
 
 // Récupérer la liste des ateliers
-$stmtAte = $conn->prepare("SELECT ID_ate, Nom_ate FROM ateliers");
+$stmtAte = $conn->prepare("SELECT ID_ate, intitule_ate FROM ateliers");
 $stmtAte->execute();
 $resultAte = $stmtAte->get_result();
 $ateliers = $resultAte->fetch_all(MYSQLI_ASSOC);
 
 // Récupérer la liste des événements
-$stmtEvent = $conn->prepare("SELECT ID_E, Nom_E FROM evenements");
+$stmtEvent = $conn->prepare("SELECT ID_E, intitule_E FROM evenements");
 $stmtEvent->execute();
 $resultEvent = $stmtEvent->get_result();
 $evenements = $resultEvent->fetch_all(MYSQLI_ASSOC);
 
 // Récupérer la liste des groupes
-$stmtGroup = $conn->prepare("SELECT ID_grp, Nom_grp FROM groups");
+$stmtGroup = $conn->prepare("SELECT ID_grp, int_grp FROM groups");
 $stmtGroup->execute();
 $resultGroup = $stmtGroup->get_result();
 $groupes = $resultGroup->fetch_all(MYSQLI_ASSOC);
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
 
     // Rediriger vers la page de liste des participants après l'ajout
-    header("Location: table.php");
+    header("Location: index.php");
     exit();
 }
 ?>
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="id_atelier">Atelier :</label>
             <select class="form-control" id="id_atelier" name="id_atelier" required>
                 <?php foreach ($ateliers as $atelier) : ?>
-                    <option value="<?php echo $atelier["ID_ate"]; ?>"><?php echo $atelier["Nom_ate"]; ?></option>
+                    <option value="<?php echo $atelier["ID_ate"]; ?>"><?php echo $atelier["intitule_ate"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="id_evenement">Événement :</label>
             <select class="form-control" id="id_evenement" name="id_evenement" required>
                 <?php foreach ($evenements as $evenement) : ?>
-                    <option value="<?php echo $evenement["ID_E"]; ?>"><?php echo $evenement["Nom_E"]; ?></option>
+                    <option value="<?php echo $evenement["ID_E"]; ?>"><?php echo $evenement["intitule_E"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="id_groupe">Groupe :</label>
             <select class="form-control" id="id_groupe" name="id_groupe" required>
                 <?php foreach ($groupes as $groupe) : ?>
-                    <option value="<?php echo $groupe["ID_grp"]; ?>"><?php echo $groupe["Nom_grp"]; ?></option>
+                    <option value="<?php echo $groupe["ID_grp"]; ?>"><?php echo $groupe["int_grp"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

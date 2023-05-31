@@ -27,7 +27,8 @@ if (isset($_GET['id'])) {
         if ($deleteStmt->affected_rows > 0) {
             // Supprimer le fichier image associé
             unlink("../../images/" . $image);
-            echo "<p>Atelier supprimé avec succès!</p>";
+            header("location: index.php");
+        exit();
         } else {
             echo "<p>Une erreur s'est produite lors de la suppression de l'atelier.</p>";
         }

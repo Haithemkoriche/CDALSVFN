@@ -9,18 +9,22 @@ $result = $stmt->get_result();
 
 // Vérifier s'il y a des résultats
 if ($result->num_rows > 0) {
-    ?>
+?>
 
     <?php include("../layout.php"); ?>
     <div class="container">
-        <h2>Liste des carousels</h2>
-        <table class="table">
+        <div class="row d-flex justify-content-between mt-2 mb-2">
+            <h2>Liste des carousels</h2>
+            <a href="ajouter.php" class="btn btn-primary">Ajouter un atelier</a>
+        </div>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Titre</th>
                     <th>Description</th>
                     <th>Image</th>
+                    <th>action</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,7 +35,12 @@ if ($result->num_rows > 0) {
                     echo "<td>" . $row["ID_carousel"] . "</td>";
                     echo "<td>" . $row["titre_car"] . "</td>";
                     echo "<td>" . $row["description_car"] . "</td>";
-                    echo "<td><img src='" . $row["path_car"] . "' width='100'></td>";
+                    echo "<td><img src='../../images/slide/" . $row["path_car"] . "' width='100'></td>";
+                    echo '<td>';
+                    echo '<a href="voir.php?id=' . $row['ID_carousel'] . '" class="btn btn-primary btn-sm">Voir</a> ';
+                    echo '<a href="modifier.php?id=' . $row['ID_carousel'] . '" class="btn btn-success btn-sm">Modifier</a> ';
+                    echo '<a href="supprimer.php?id=' . $row['ID_carousel'] . '" class="btn btn-danger btn-sm">Supprimer</a>';
+                    echo '</td>';
                     echo "</tr>";
                 }
                 ?>
@@ -39,8 +48,7 @@ if ($result->num_rows > 0) {
         </table>
     </div>
 
-    <?php include("../footer.html");
-
+<?php include("../footer.html");
 } else {
     echo "Aucun carousel trouvé.";
 }

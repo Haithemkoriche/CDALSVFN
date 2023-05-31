@@ -56,7 +56,7 @@ $conn->close();
         <div class="card bg-primary text-white">
           <div class="card-body">
             <h5 class="card-title"> <i class="fas fa-users"></i> Participantes</h5>
-            <h2 class="card-text d-flex justify-content-between"> <?php echo $participantsCount; ?> <a href="" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
+            <h2 class="card-text d-flex justify-content-between"> <?php echo $participantsCount; ?> <a href="participants/" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@ $conn->close();
         <div class="card bg-success text-white">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-users"></i> Formateurs</h5>
-            <h2 class="card-text d-flex justify-content-between"><?php echo $formateursCount; ?><a href="" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
+            <h2 class="card-text d-flex justify-content-between"><?php echo $formateursCount; ?><a href="Formateurs/" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@ $conn->close();
         <div class="card bg-info text-white">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-list"></i> Activités</h5>
-            <h2 class="card-text d-flex justify-content-between"><?php echo $activitiesCount; ?> <a href="activites/index.php" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
+            <h2 class="card-text d-flex justify-content-between"><?php echo $activitiesCount; ?> <a href="activites/" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@ $conn->close();
         <div class="card bg-warning text-dark">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-tools"></i> Ateliers</h5>
-            <h2 class="card-text d-flex justify-content-between"><?php echo $ateliersCount; ?> <a href="ateliers/index.php" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
+            <h2 class="card-text d-flex justify-content-between"><?php echo $ateliersCount; ?> <a href="ateliers/" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
       </div>
@@ -90,28 +90,28 @@ $conn->close();
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"> <i class="fas fa-calendar-alt"></i> Événements </h5>
-            <h2 class="card-text d-flex justify-content-between"><?php echo $evenementsCount; ?> <a href="" class=""><i class="fas fa-arrow-right"></i></a></h2>
+            <h2 class="card-text d-flex justify-content-between"><?php echo $evenementsCount; ?> <a href="evenements/" class=""><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
         <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-envelope animated faa-shake"></i>
- Messages </h5>
-            <h2 class="card-text d-flex justify-content-between"><?php echo $contactsCount; ?><a href="" class=""><i class="fas fa-arrow-right"></i></a></h2>
+              Messages </h5>
+            <h2 class="card-text d-flex justify-content-between"><?php echo $contactsCount; ?><a href="contacts/" class=""><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
       </div>
       <div class="col-md-6">
-      <div class="card">
+        <div class="card">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-user"></i> Animateurs </h5>
-            <h2 class="card-text d-flex justify-content-between"><?php echo $animateursCount; ?><a href="" class=""><i class="fas fa-arrow-right"></i></a></h2>
+            <h2 class="card-text d-flex justify-content-between"><?php echo $animateursCount; ?><a href="Animateurs/" class=""><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
         <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-play"></i> Carousels </h5>
-            <h2 class="card-text d-flex justify-content-between"><?php echo $carouselsCount; ?><a href="" class=""><i class="fas fa-arrow-right"></i></a></h2>
+            <h2 class="card-text d-flex justify-content-between"><?php echo $carouselsCount; ?><a href="Carousels/" class=""><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
       </div>

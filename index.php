@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           VALUES (?, ?, ?, ?)";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("ssss", $name, $email, $phone, $message);
-
+  $stmt->execute();
 
   $stmt->close();
 }
@@ -73,7 +73,7 @@ $conn->close();
   <div class="carousel-inner">
     <?php foreach ($carousels as $key => $slide) : ?>
       <div class="carousel-item <?php echo ($key == 0) ? 'active' : ''; ?>" data-bs-interval="3000">
-        <img src="<?php echo $slide['path_car']; ?>" class="d-block w-100 blur carousel-img" alt="...">
+        <img src="images/slide/<?php echo $slide['path_car']; ?>" class="d-block w-100 blur carousel-img" alt="...">
         <div class="carousel-caption">
           <h1><?php echo $slide['titre_car']; ?></h1>
           <p><?php echo $slide['description_car']; ?></p>
@@ -140,21 +140,24 @@ $conn->close();
 <!-- start ateliers -->
 <section id="ateliers">
   <div class="container mb-5 mt-5">
-    <h2 style="text-align:center" class="mb-5 mt-5">Les ateliers proposés</h2>
-    <div class="row column-gap-auto">
+    <h2 class="text-center mb-5 mt-5">Les ateliers proposés</h2>
+    <div class="row">
       <?php foreach ($ateliers as $atelier) : ?>
         <div class="col-lg-4 col-md-6">
-          <div class="atelier">
-            <img src="images/<?php echo $atelier['image_ate']; ?>" alt="Atelier 1">
-            <h3><?php echo $atelier['intitule_ate']; ?></h3>
-            <p><?php echo $atelier['description_ate']; ?></p>
-            <a href="#" class="btn btn-primary">S'inscrire</a>
+          <div class="card mb-4">
+            <img src="images/<?php echo $atelier['image_ate']; ?>" class="card-img-top" alt="Atelier 1">
+            <div class="card-body">
+              <h3 class="card-title"><?php echo $atelier['intitule_ate']; ?></h3>
+              <p class="card-text"><?php echo $atelier['description_ate']; ?></p>
+              <a href="#" class="btn btn-primary">S'inscrire</a>
+            </div>
           </div>
         </div>
       <?php endforeach; ?>
     </div>
   </div>
 </section>
+
 
 <!-- end ateliers -->
 <!-- start evenement -->

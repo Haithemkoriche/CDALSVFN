@@ -45,12 +45,6 @@ if (isset($_GET["logout"])) {
         <a class="navbar-brand" href="#">Admin Panel</a>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <span class="nav-link"
-              >Welcome,
-              <?php echo $adminEmail; ?></span
-            >
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="../admin_panel.php">Dashboard</a>
           </li>
           <li class="nav-item">

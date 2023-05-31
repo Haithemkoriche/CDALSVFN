@@ -5,9 +5,9 @@ require_once '../../config/bdd.php';
 // Vérifier si l'ID du participant est passé en paramètre d'URL
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
-
+ 
     // Préparer et exécuter la requête pour récupérer les informations du participant
-    $stmt = $conn->prepare("SELECT participants.*, ateliers.Nom_ate, evenements.Nom_E, groups.Nom_grp FROM participants LEFT JOIN ateliers ON participants.ID_ate_foreign = ateliers.ID_ate LEFT JOIN evenements ON participants.ID_E_foreign = evenements.ID_E LEFT JOIN groups ON participants.ID_grp_foreign = groups.ID_grp WHERE participants.ID_p = ?");
+    $stmt = $conn->prepare("SELECT participants.*, ateliers.intitule_ate, evenements.intitule_E, groups.int_grp FROM participants LEFT JOIN ateliers ON participants.ID_ate_foreign = ateliers.ID_ate LEFT JOIN evenements ON participants.ID_E_foreign = evenements.ID_E LEFT JOIN groups ON participants.ID_grp_foreign = groups.ID_grp WHERE participants.ID_p = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -60,15 +60,15 @@ if (isset($_GET["id"])) {
             </tr>
             <tr>
                 <th>Atelier</th>
-                <td><?php echo $participant["Nom_ate"]; ?></td>
+                <td><?php echo $participant["intitule_ate"]; ?></td>
             </tr>
             <tr>
                 <th>Événement</th>
-                <td><?php echo $participant["Nom_E"]; ?></td>
+                <td><?php echo $participant["intitule_E"]; ?></td>
             </tr>
             <tr>
                 <th>Groupe</th>
-                <td><?php echo $participant["Nom_grp"]; ?></td>
+                <td><?php echo $participant["int_grp"]; ?></td>
             </tr>
         </tbody>
     </table>

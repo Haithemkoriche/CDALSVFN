@@ -11,14 +11,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dateDebut = $_POST["date_debut"];
     $dateFin = $_POST["date_fin"];
     $idAnimateur = $_POST["id_animateur"];
+    // Récupérer le nom du fichier téléchargé
+    $image = $_FILES["image"]["name"];
+
+    // Récupérer le chemin temporaire du fichier
+    $tmpFilePath = $_FILES["image"]["tmp_name"];
+
+    // Déplacer le fichier vers un emplacement permanent
+    $targetPath = $image;
+    move_uploaded_file($tmpFilePath, $targetPath);
 
     // Préparer et exécuter la requête d'insertion des données
     $stmt = $conn->prepare("INSERT INTO evenements (intitule_E, description_E, image_E, date_d_E, date_f_E, ID_Anim_foreign) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssi", $intitule, $description, $image, $dateDebut, $dateFin, $idAnimateur);
+    $stmt->bind_param("sssssi", $intitule, $description, $targetPath, $dateDebut, $dateFin, $idAnimateur);
     $stmt->execute();
 
+
     // Rediriger vers la page de liste des événements
-    header("Location: table.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -31,7 +41,7 @@ $animateurs = $stmt->get_result();
 <?php include("../layout.php"); ?>
 <div class="container">
     <h2>Ajouter un événement</h2>
-    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
+    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="intitule">Intitulé :</label>
             <input type="text" class="form-control" id="intitule" name="intitule" required>
@@ -42,8 +52,9 @@ $animateurs = $stmt->get_result();
         </div>
         <div class="form-group">
             <label for="image">Image :</label>
-            <input type="text" class="form-control" id="image" name="image" required>
+            <input type="file" class="form-control" id="image" name="image" required>
         </div>
+
         <div class="form-group">
             <label for="date_debut">Date de début :</label>
             <input type="date" class="form-control" id="date_debut" name="date_debut" required>

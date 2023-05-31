@@ -14,8 +14,10 @@ if ($result->num_rows > 0) {
 
 <?php include("../layout.php"); ?>
 <div class="container">
+    <div class="row d-flex justify-content-between mt-2 mb-2">
     <h2>Liste des groupes</h2>
     <a href="ajouter.php" class="btn btn-primary mb-3">Ajouter un groupe</a>
+  </div>
     <table class="table table-striped">
         <thead>
             <tr>

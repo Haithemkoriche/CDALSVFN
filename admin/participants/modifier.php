@@ -31,7 +31,7 @@ if (isset($_GET["id"])) {
     }
 
     // Préparer et exécuter la requête pour récupérer les informations du participant
-    $stmt = $conn->prepare("SELECT participants.*, ateliers.Nom_ate, evenements.Nom_E, groups.Nom_grp FROM participants LEFT JOIN ateliers ON participants.ID_ate_foreign = ateliers.ID_ate LEFT JOIN evenements ON participants.ID_E_foreign = evenements.ID_E LEFT JOIN groups ON participants.ID_grp_foreign = groups.ID_grp WHERE participants.ID_p = ?");
+    $stmt = $conn->prepare("SELECT participants.*, ateliers.intitule_ate, evenements.intitule_E, groups.int_grp FROM participants LEFT JOIN ateliers ON participants.ID_ate_foreign = ateliers.ID_ate LEFT JOIN evenements ON participants.ID_E_foreign = evenements.ID_E LEFT JOIN groups ON participants.ID_grp_foreign = groups.ID_grp WHERE participants.ID_p = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -85,7 +85,7 @@ if (isset($_GET["id"])) {
             <label for="id_atelier">Atelier :</label>
             <select class="form-control" id="id_atelier" name="id_atelier" required>
                 <?php foreach ($ateliers as $atelier) : ?>
-                    <option value="<?php echo $atelier["ID_ate"]; ?>" <?php if ($atelier["ID_ate"] == $participant["ID_ate_foreign"]) echo "selected"; ?>><?php echo $atelier["Nom_ate"]; ?></option>
+                    <option value="<?php echo $atelier["ID_ate"]; ?>" <?php if ($atelier["ID_ate"] == $participant["ID_ate_foreign"]) echo "selected"; ?>><?php echo $atelier["intitule_ate"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -93,7 +93,7 @@ if (isset($_GET["id"])) {
             <label for="id_evenement">Événement :</label>
             <select class="form-control" id="id_evenement" name="id_evenement" required>
                 <?php foreach ($evenements as $evenement) : ?>
-                    <option value="<?php echo $evenement["ID_E"]; ?>" <?php if ($evenement["ID_E"] == $participant["ID_E_foreign"]) echo "selected"; ?>><?php echo $evenement["Nom_E"]; ?></option>
+                    <option value="<?php echo $evenement["ID_E"]; ?>" <?php if ($evenement["ID_E"] == $participant["ID_E_foreign"]) echo "selected"; ?>><?php echo $evenement["intitule_E"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -101,7 +101,7 @@ if (isset($_GET["id"])) {
             <label for="id_groupe">Groupe :</label>
             <select class="form-control" id="id_groupe" name="id_groupe" required>
                 <?php foreach ($groupes as $groupe) : ?>
-                    <option value="<?php echo $groupe["ID_grp"]; ?>" <?php if ($groupe["ID_grp"] == $participant["ID_grp_foreign"]) echo "selected"; ?>><?php echo $groupe["Nom_grp"]; ?></option>
+                    <option value="<?php echo $groupe["ID_grp"]; ?>" <?php if ($groupe["ID_grp"] == $participant["ID_grp_foreign"]) echo "selected"; ?>><?php echo $groupe["int_grp"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

@@ -28,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérifier si l'insertion a réussi
     if ($stmt->affected_rows > 0) {
-        echo "Carousel enregistré avec succès!";
+        header("location: index.php");
+        exit();
     } else {
         echo "Une erreur s'est produite lors de l'enregistrement du carousel.";
     }

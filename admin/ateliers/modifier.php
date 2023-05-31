@@ -45,7 +45,7 @@ if (isset($_GET['id'])) {
                         // Afficher les options du select avec les formateurs
                         while ($formateur = mysqli_fetch_assoc($formateursResult)) {
                             $selected = ($formateur['ID_form'] == $row['ID_form_foreign']) ? 'selected' : '';
-                            echo '<option value="' . $formateur['ID_form'] . '" ' . $selected . '>' . $formateur['nom_form'] . '</option>';
+                            echo '<option value="' . $formateur['ID_form'] . '" ' . $selected . '>' . $formateur['Nom_form'] . '</option>';
                         }
                         ?>
                     </select>
