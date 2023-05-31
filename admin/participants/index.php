@@ -3,7 +3,7 @@
 require_once '../../config/bdd.php';
 
 // Préparer et exécuter la requête pour récupérer la liste des participants avec les informations des clés étrangères
-$stmt = $conn->prepare("SELECT participants.*, ateliers.intitule_ate, evenements.intitule_E, groups.int_grp FROM participants LEFT JOIN ateliers ON participants.ID_ate_foreign = ateliers.ID_ate LEFT JOIN evenements ON participants.ID_E_foreign = evenements.ID_E LEFT JOIN groups ON participants.ID_grp_foreign = groups.ID_grp");
+$stmt = $conn->prepare("SELECT participants.*, activities.titre_act, groups.int_grp FROM participants LEFT JOIN activities ON participants.ID_act_foreign = activities.ID_act LEFT JOIN groups ON participants.ID_grp_foreign = groups.ID_grp");
 $stmt->execute();
 $result = $stmt->get_result();
 $participants = $result->fetch_all(MYSQLI_ASSOC);
@@ -23,8 +23,7 @@ $participants = $result->fetch_all(MYSQLI_ASSOC);
                 <th>Prénom</th>
                 <th>Email</th>
                 <th>telephone</th>
-                <th>Atelier</th>
-                <th>Événement</th>
+                <th>Activité</th>
                 <th>Groupe</th>
                 <th>Action</th>
             </tr>
@@ -37,8 +36,7 @@ $participants = $result->fetch_all(MYSQLI_ASSOC);
                     <td><?php echo $participant["prenom_p"]; ?></td>
                     <td><?php echo $participant["Email_p"]; ?></td>
                     <td><?php echo $participant["telephon_p"]; ?></td>
-                    <td><?php echo $participant["intitule_ate"]; ?></td>
-                    <td><?php echo $participant["intitule_E"]; ?></td>
+                    <td><?php echo $participant["titre_act"]; ?></td>
                     <td><?php echo $participant["int_grp"]; ?></td>
                     <td>
                         <a href="voir.php?id=<?php echo $participant["ID_p"]; ?>" class="btn btn-primary btn-sm">Voir</a>

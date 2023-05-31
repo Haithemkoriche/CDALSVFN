@@ -4,8 +4,9 @@ require_once '../../config/bdd.php';
 
 // Vérifier si le formulaire d'ajout a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = $_POST['title'];
-    $description = $_POST['description'];
+    $titre_act = $_POST['titre_act'];
+    $description_act = $_POST['description_act'];
+    $id_atelier = $_POST["id_atelier"];
 
     // Vérifier si un fichier a été sélectionné pour l'upload
     if ($_FILES['image']['name']) {
@@ -22,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Déplacer l'image téléchargée vers le dossier des images
             $image_destination = '../../images/' . $image_name;
             move_uploaded_file($image_tmp, $image_destination);
-            
+
             // Insérer la nouvelle activité dans la base de données avec le nom de l'image
-            $sql = "INSERT INTO `activities` (`title`, `description`, `image`, `created_at`, `updated_at`) VALUES ('$title', '$description', '$image_name', NOW(), NOW())";
+            $sql = "INSERT INTO `activities` (`titre_act`, `description_act`, `image_act`, `ID_ate_foreign`, `created_at`, `updated_at`) VALUES ('$titre_act', '$description_act', '$image_name', '$id_atelier', NOW(), NOW())";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
@@ -43,6 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Fermer la connexion à la base de données
     mysqli_close($conn);
 }
+
+// Récupérer la liste des ateliers depuis la base de données
+$sql_ateliers = "SELECT * FROM `ateliers`";
+$result_ateliers = mysqli_query($conn, $sql_ateliers);
+$ateliers = mysqli_fetch_all($result_ateliers, MYSQLI_ASSOC);
 ?>
 
 <?php include("../layout.php"); ?>
@@ -50,16 +56,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>Ajouter une activité</h2>
     <form method="POST" action="ajouter.php" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="title">Titre:</label>
-            <input type="text" class="form-control" name="title" id="title">
+            <label for="titre_act">Titre:</label>
+            <input type="text" class="form-control" name="titre_act" id="titre_act">
         </div>
         <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea class="form-control" name="description" id="description"></textarea>
+            <label for="description_act">Description:</label>
+            <textarea class="form-control" name="description_act" id="description_act"></textarea>
         </div>
         <div class="form-group">
             <label for="image">Image:</label>
             <input type="file" class="form-control-file" name="image" id="image">
+        </div>
+        <div class="form-group">
+            <label for="id_atelier">Atelier :</label>
+            <select class="form-control" id="id_atelier" name="id_atelier" required>
+                <?php foreach ($ateliers as $atelier) : ?>
+                    <option value="<?php echo $atelier["ID_ate"]; ?>"><?php echo $atelier["intitule_ate"]; ?></option>
+                <?php endforeach; ?>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>

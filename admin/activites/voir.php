@@ -2,32 +2,32 @@
 // Inclure le fichier de configuration de la base de données
 require_once '../../config/bdd.php';
 
-// Vérifier si l'ID de l'activité est passé en paramètre dans l'URL
+// Récupérer l'ID de l'activité à afficher
 if (isset($_GET['id'])) {
-    $activityId = $_GET['id'];
+    $id_act = $_GET['id'];
 
-    // Récupérer les détails de l'activité depuis la base de données
-    $sql = "SELECT `ID_act`, `title`, `description`, `image`, `created_at`, `updated_at` FROM `activities` WHERE `ID_act` = $activityId";
+    // Récupérer les informations de l'activité depuis la base de données
+    $sql = "SELECT * FROM `activities` INNER JOIN `ateliers` ON `activities`.`ID_ate_foreign` = `ateliers`.`ID_ate` WHERE `ID_act` = $id_act";
     $result = mysqli_query($conn, $sql);
-
-    // Vérifier si l'activité existe
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-
-        // Afficher les détails de l'activité
-        echo '<h2>Détails de l\'activité</h2>';
-        echo '<p><strong>Titre:</strong> ' . $row['title'] . '</p>';
-        echo '<p><strong>Description:</strong> ' . $row['description'] . '</p>';
-        echo '<p><strong>Image:</strong> <img src="../../images/' . $row['image'] . '" width="200" height="200"></p>';
-        echo '<p><strong>Date de création:</strong> ' . $row['created_at'] . '</p>';
-        echo '<p><strong>Date de modification:</strong> ' . $row['updated_at'] . '</p>';
-    } else {
-        echo 'Activité non trouvée.';
-    }
-
-    // Fermer la connexion à la base de données
-    mysqli_close($conn);
-} else {
-    echo 'ID de l\'activité non spécifié.';
+    $activite = mysqli_fetch_assoc($result);
 }
 ?>
+
+<?php include("../layout.php"); ?>
+<div class="container">
+    <h2>Détails de l'activité</h2>
+    <?php if ($activite) : ?>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo $activite['titre_act']; ?></h5>
+                <p class="card-text"><?php echo $activite['description_act']; ?></p>
+                <p class="card-text">Atelier: <?php echo $activite['intitule_ate']; ?></p>
+                <img src="../../images/<?php echo $activite['image_act']; ?>" class="card-img-top" alt="Image de l'activité">
+            </div>
+        </div>
+    <?php else : ?>
+        <p>Aucune activité trouvée.</p>
+    <?php endif; ?>
+</div>
+
+<?php include("../footer.html"); ?>

@@ -16,13 +16,12 @@ if (isset($_GET["id"])) {
         $telephone = $_POST["telephone"];
         $dateNaissance = $_POST["date_naissance"];
         $lieuNaissance = $_POST["lieu_naissance"];
-        $idAtelier = $_POST["id_atelier"];
-        $idEvenement = $_POST["id_evenement"];
+        $idactivite = $_POST["id_activite"];
         $idGroupe = $_POST["id_groupe"];
 
         // Préparer et exécuter la requête de mise à jour des données du participant
-        $stmt = $conn->prepare("UPDATE participants SET Nom_p = ?, prenom_p = ?, addres_p = ?, Email_p = ?, telephon_p = ?, date_n_p = ?, lieu_n_p = ?, ID_ate_foreign = ?, ID_E_foreign = ?, ID_grp_foreign = ? WHERE ID_p = ?");
-        $stmt->bind_param("ssssssiiii", $nom, $prenom, $adresse, $email, $telephone, $dateNaissance, $lieuNaissance, $idAtelier, $idEvenement, $idGroupe, $id);
+        $stmt = $conn->prepare("UPDATE participants SET Nom_p = ?, prenom_p = ?, addres_p = ?, Email_p = ?, telephon_p = ?, date_n_p = ?, lieu_n_p = ?, ID_act_foreign = ?, ID_E_foreign = ?, ID_grp_foreign = ? WHERE ID_p = ?");
+        $stmt->bind_param("ssssssiiii", $nom, $prenom, $adresse, $email, $telephone, $dateNaissance, $lieuNaissance, $idactivite, $idEvenement, $idGroupe, $id);
         $stmt->execute();
 
         // Rediriger vers la page de liste des participants après la modification
@@ -31,7 +30,7 @@ if (isset($_GET["id"])) {
     }
 
     // Préparer et exécuter la requête pour récupérer les informations du participant
-    $stmt = $conn->prepare("SELECT participants.*, ateliers.intitule_ate, evenements.intitule_E, groups.int_grp FROM participants LEFT JOIN ateliers ON participants.ID_ate_foreign = ateliers.ID_ate LEFT JOIN evenements ON participants.ID_E_foreign = evenements.ID_E LEFT JOIN groups ON participants.ID_grp_foreign = groups.ID_grp WHERE participants.ID_p = ?");
+    $stmt = $conn->prepare("SELECT participants.*, activities.titre_act, groups.int_grp FROM participants LEFT JOIN activities ON participants.ID_act_foreign = activities.ID_act LEFT JOIN groups ON participants.ID_grp_foreign = groups.ID_grp WHERE participants.ID_p = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -82,18 +81,10 @@ if (isset($_GET["id"])) {
             <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance" value="<?php echo $participant["lieu_n_p"]; ?>" required>
         </div>
         <div class="form-group">
-            <label for="id_atelier">Atelier :</label>
-            <select class="form-control" id="id_atelier" name="id_atelier" required>
-                <?php foreach ($ateliers as $atelier) : ?>
-                    <option value="<?php echo $atelier["ID_ate"]; ?>" <?php if ($atelier["ID_ate"] == $participant["ID_ate_foreign"]) echo "selected"; ?>><?php echo $atelier["intitule_ate"]; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="id_evenement">Événement :</label>
-            <select class="form-control" id="id_evenement" name="id_evenement" required>
-                <?php foreach ($evenements as $evenement) : ?>
-                    <option value="<?php echo $evenement["ID_E"]; ?>" <?php if ($evenement["ID_E"] == $participant["ID_E_foreign"]) echo "selected"; ?>><?php echo $evenement["intitule_E"]; ?></option>
+            <label for="id_activite">Activité :</label>
+            <select class="form-control" id="id_activite" name="id_activite" required>
+                <?php foreach ($activities as $activite) : ?>
+                    <option value="<?php echo $activite["ID_act"]; ?>" <?php if ($activite["ID_act"] == $participant["ID_act_foreign"]) echo "selected"; ?>><?php echo $activite["titre_act"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

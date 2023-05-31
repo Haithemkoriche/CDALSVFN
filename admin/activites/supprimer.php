@@ -2,23 +2,19 @@
 // Inclure le fichier de configuration de la base de données
 require_once '../../config/bdd.php';
 
-// Vérifier si l'ID de l'activité est passé en paramètre dans l'URL
+// Vérifier si l'ID de l'activité à supprimer est passé en paramètre
 if (isset($_GET['id'])) {
-    $activityId = $_GET['id'];
+    $id_act = $_GET['id'];
 
     // Supprimer l'activité de la base de données
-    $sql = "DELETE FROM `activities` WHERE `ID_act` = $activityId";
+    $sql = "DELETE FROM `activities` WHERE `ID_act` = $id_act";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-        echo 'Activité supprimée avec succès.';
+        header("location: table.php");
+        exit();
     } else {
         echo 'Erreur lors de la suppression de l\'activité: ' . mysqli_error($conn);
     }
-
-    // Fermer la connexion à la base de données
-    mysqli_close($conn);
-} else {
-    echo 'ID de l\'activité non spécifié.';
 }
 ?>

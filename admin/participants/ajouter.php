@@ -2,17 +2,11 @@
 // Inclure la configuration de la base de données
 require_once '../../config/bdd.php';
 
-// Récupérer la liste des ateliers
-$stmtAte = $conn->prepare("SELECT ID_ate, intitule_ate FROM ateliers");
+// Récupérer la liste des activities
+$stmtAte = $conn->prepare("SELECT ID_act, titre_act FROM activities");
 $stmtAte->execute();
 $resultAte = $stmtAte->get_result();
-$ateliers = $resultAte->fetch_all(MYSQLI_ASSOC);
-
-// Récupérer la liste des événements
-$stmtEvent = $conn->prepare("SELECT ID_E, intitule_E FROM evenements");
-$stmtEvent->execute();
-$resultEvent = $stmtEvent->get_result();
-$evenements = $resultEvent->fetch_all(MYSQLI_ASSOC);
+$activities = $resultAte->fetch_all(MYSQLI_ASSOC);
 
 // Récupérer la liste des groupes
 $stmtGroup = $conn->prepare("SELECT ID_grp, int_grp FROM groups");
@@ -24,19 +18,18 @@ $groupes = $resultGroup->fetch_all(MYSQLI_ASSOC);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $nom = $_POST["nom"];
-    $prenom = $_POST["prenom"];
+    $prenom = $_POST["prenom"]; 
     $adresse = $_POST["adresse"];
     $email = $_POST["email"];
     $telephone = $_POST["telephone"];
     $dateNaissance = $_POST["date_naissance"];
     $lieuNaissance = $_POST["lieu_naissance"];
-    $idAtelier = $_POST["id_atelier"];
-    $idEvenement = $_POST["id_evenement"];
+    $idactivite = $_POST["id_activite"];
     $idGroupe = $_POST["id_groupe"];
 
     // Préparer et exécuter la requête d'insertion des données du participant
-    $stmt = $conn->prepare("INSERT INTO participants (Nom_p, prenom_p, addres_p, Email_p, telephon_p, date_n_p, lieu_n_p, ID_ate_foreign, ID_E_foreign, ID_grp_foreign) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssiiii", $nom, $prenom, $adresse, $email, $telephone, $dateNaissance, $lieuNaissance, $idAtelier, $idEvenement, $idGroupe);
+    $stmt = $conn->prepare("INSERT INTO participants (Nom_p, prenom_p, addres_p, Email_p, telephon_p, date_n_p, lieu_n_p, ID_act_foreign, ID_grp_foreign) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssiii", $nom, $prenom, $adresse, $email, $telephone, $dateNaissance, $lieuNaissance, $idactivite, $idGroupe);
     $stmt->execute();
 
     // Rediriger vers la page de liste des participants après l'ajout
@@ -78,18 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance" required>
         </div>
         <div class="form-group">
-            <label for="id_atelier">Atelier :</label>
-            <select class="form-control" id="id_atelier" name="id_atelier" required>
-                <?php foreach ($ateliers as $atelier) : ?>
-                    <option value="<?php echo $atelier["ID_ate"]; ?>"><?php echo $atelier["intitule_ate"]; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="id_evenement">Événement :</label>
-            <select class="form-control" id="id_evenement" name="id_evenement" required>
-                <?php foreach ($evenements as $evenement) : ?>
-                    <option value="<?php echo $evenement["ID_E"]; ?>"><?php echo $evenement["intitule_E"]; ?></option>
+            <label for="id_activite">activité :</label>
+            <select class="form-control" id="id_activite" name="id_activite" required>
+                <?php foreach ($activities as $activite) : ?>
+                    <option value="<?php echo $activite["ID_act"]; ?>"><?php echo $activite["titre_act"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>

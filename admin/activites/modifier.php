@@ -2,53 +2,62 @@
 // Inclure le fichier de configuration de la base de données
 require_once '../../config/bdd.php';
 
-// Vérifier si l'ID de l'activité est passé en paramètre dans l'URL
+// Récupérer l'ID de l'activité à modifier
 if (isset($_GET['id'])) {
-  $activityId = $_GET['id'];
+    $id_act = $_GET['id'];
 
-  // Vérifier si le formulaire de modification a été soumis
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer les données soumises du formulaire
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $image = $_POST['image'];
+    // Récupérer les informations de l'activité depuis la base de données
+    $sql = "SELECT * FROM `activities` INNER JOIN `ateliers` ON `activities`.`ID_ate_foreign` = `ateliers`.`ID_ate` WHERE `ID_act` = $id_act";
+    $result = mysqli_query($conn, $sql);
+    $activite = mysqli_fetch_assoc($result);
+}
 
-    // Mettre à jour les détails de l'activité dans la base de données
-    $sql = "UPDATE `activities` SET `title` = '$title', `description` = '$description', `image` = '$image', `updated_at` = NOW() WHERE `ID_act` = $activityId";
+// Récupérer la liste des ateliers
+$sql_ateliers = "SELECT * FROM `ateliers`";
+$result_ateliers = mysqli_query($conn, $sql_ateliers);
+$ateliers = mysqli_fetch_all($result_ateliers, MYSQLI_ASSOC);
+
+// Vérifier si le formulaire de modification a été soumis
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $titre_act = $_POST['titre_act'];
+    $description_act = $_POST['description_act'];
+    $id_atelier = $_POST["id_atelier"];
+
+    // Mettre à jour les informations de l'activité dans la base de données
+    $sql = "UPDATE `activities` SET `titre_act` = '$titre_act', `description_act` = '$description_act', `ID_ate_foreign` = '$id_atelier' WHERE `ID_act` = $id_act";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-      echo 'Activité modifiée avec succès.';
+        header("location: voir.php?id=$id_act");
+        exit();
     } else {
-      echo 'Erreur lors de la modification de l\'activité: ' . mysqli_error($conn);
+        echo 'Erreur lors de la modification de l\'activité: ' . mysqli_error($conn);
     }
-  } else {
-    // Récupérer les détails de l'activité depuis la base de données
-    $sql = "SELECT `ID_act`, `title`, `description`, `image`, `created_at`, `updated_at` FROM `activities` WHERE `ID_act` = $activityId";
-    $result = mysqli_query($conn, $sql);
-
-    // Vérifier si l'activité existe
-    if (mysqli_num_rows($result) > 0) {
-      $row = mysqli_fetch_assoc($result);
-
-      // Afficher le formulaire de modification
-      echo '<h2>Modifier l\'activité</h2>';
-      echo '<form method="POST" action="modifier.php?id=' . $activityId . '">';
-      echo '<label>Titre:</label><br>';
-      echo '<input type="text" name="title" value="' . $row['title'] . '"><br><br>';
-      echo '<label>Description:</label><br>';
-      echo '<textarea name="description">' . $row['description'] . '</textarea><br><br>';
-      echo '<label>Image:</label><br>';
-      echo '<input type="text" name="image" value="' . $row['image'] . '"><br><br>';
-      echo '<input type="submit" value="Modifier">';
-      echo '</form>';
-    } else {
-      echo 'Activité non trouvée.';
-    }
-  }
-
-  // Fermer la connexion à la base de données
-  mysqli_close($conn);
-} else {
-  echo 'ID de l\'activité non spécifié.';
 }
+?>
+
+<?php include("../layout.php"); ?>
+<div class="container">
+    <h2>Modifier une activité</h2>
+    <form method="POST" action="modifier.php?id=<?php echo $id_act; ?>">
+        <div class="form-group">
+            <label for="titre_act">Titre:</label>
+            <input type="text" class="form-control" name="titre_act" id="titre_act" value="<?php echo $activite['titre_act']; ?>">
+        </div>
+        <div class="form-group">
+            <label for="description_act">Description:</label>
+            <textarea class="form-control" name="description_act" id="description_act"><?php echo $activite['description_act']; ?></textarea>
+        </div>
+        <div class="form-group">
+            <label for="id_atelier">Atelier :</label>
+            <select class="form-control" id="id_atelier" name="id_atelier" required>
+                <?php foreach ($ateliers as $atelier) : ?>
+                    <option value="<?php echo $atelier["ID_ate"]; ?>" <?php if ($atelier["ID_ate"] == $activite["ID_ate_foreign"]) echo "selected"; ?>><?php echo $atelier["intitule_ate"]; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+</div>
+
+<?php include("../footer.html"); ?>

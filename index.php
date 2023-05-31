@@ -123,11 +123,11 @@ $conn->close();
       <?php foreach ($activities as $activity) : ?>
         <div class="col">
           <div class="card h-100">
-            <img src="images/<?php echo $activity['image']; ?>" class="card-img-top" alt="..." style="object-fit: cover; height: 300px;">
+            <img src="images/<?php echo $activity['image_act']; ?>" class="card-img-top" alt="..." style="object-fit: cover; height: 300px;">
             <div class="card-body d-flex flex-column">
-              <h5 class="card-title"><?php echo $activity['title']; ?></h5>
-              <p class="card-text"><?php echo $activity['description']; ?></p>
-              <a href="#" class="mt-auto btn btn-primary">En savoir plus</a>
+              <h5 class="card-title"><?php echo $activity['titre_act']; ?></h5>
+              <p class="card-text"><?php echo $activity['description_act']; ?></p>
+              <a href="incrir.php" class="mt-auto btn btn-primary">Inscrire</a>
             </div>
           </div>
         </div>
@@ -149,7 +149,6 @@ $conn->close();
             <div class="card-body">
               <h3 class="card-title"><?php echo $atelier['intitule_ate']; ?></h3>
               <p class="card-text"><?php echo $atelier['description_ate']; ?></p>
-              <a href="#" class="btn btn-primary">S'inscrire</a>
             </div>
           </div>
         </div>
@@ -157,6 +156,7 @@ $conn->close();
     </div>
   </div>
 </section>
+
 
 
 <!-- end ateliers -->
