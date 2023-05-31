@@ -11,8 +11,11 @@ $result = $stmt->get_result();
 
 <?php include("../layout.php"); ?>
 <div class="container">
-    <h2>Liste des animateurs</h2>
-    <table class="table">
+    <div class="row d-flex justify-content-between mt-2 mb-2">
+        <h2>Liste des animateurs</h2>
+        <a href="ajouter.php" class="btn btn-primary">Ajouter un animateur</a>
+    </div>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
@@ -32,9 +35,9 @@ $result = $stmt->get_result();
                     <td><?php echo $animateur["Email_anim"]; ?></td>
                     <td><?php echo $animateur["telephon_anim"]; ?></td>
                     <td>
-                        <a href="voir.php?id=<?php echo $animateur["ID_Anim"]; ?>">Voir</a>
-                        <a href="modifier.php?id=<?php echo $animateur["ID_Anim"]; ?>">Modifier</a>
-                        <a href="supprimer.php?id=<?php echo $animateur["ID_Anim"]; ?>">Supprimer</a>
+                        <a href="voir.php?id=<?php echo $animateur["ID_Anim"]; ?>" class="btn btn-primary btn-sm">Voir</a>
+                        <a href="modifier.php?id=<?php echo $animateur["ID_Anim"]; ?>" class="btn btn-success btn-sm">Modifier</a>
+                        <a href="supprimer.php?id=<?php echo $animateur["ID_Anim"]; ?>" class="btn btn-danger btn-sm">Supprimer</a>
                     </td>
                 </tr>
             <?php } ?>
