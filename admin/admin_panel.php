@@ -72,7 +72,7 @@ $conn->close();
         <div class="card bg-info text-white">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-list"></i> Activités</h5>
-            <h2 class="card-text d-flex justify-content-between"><?php echo $activitiesCount; ?> <a href="" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
+            <h2 class="card-text d-flex justify-content-between"><?php echo $activitiesCount; ?> <a href="activites/index.php" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
       </div>
