@@ -49,7 +49,7 @@ $conn->close();
 <?php include('layout.php'); ?>
 
 
-<div class="container mt-5">
+<div class="container mt-5" id="dash">
   <div class="container mt-5">
     <div class="row gap-sm-3 gap-lg-0">
       <div class="col-md-12 col-lg-3">
@@ -80,7 +80,7 @@ $conn->close();
         <div class="card bg-warning text-dark">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-tools"></i> Ateliers</h5>
-            <h2 class="card-text d-flex justify-content-between"><?php echo $ateliersCount; ?> <a href="" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
+            <h2 class="card-text d-flex justify-content-between"><?php echo $ateliersCount; ?> <a href="ateliers/index.php" class="text-white "><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
       </div>

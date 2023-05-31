@@ -122,19 +122,21 @@ $conn->close();
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <?php foreach ($activities as $activity) : ?>
         <div class="col">
-    <div class="card h-100">
-            <img src="images/<?php echo $activity['image']; ?>" class="card-img-top" alt="...">
-            <div class="card-body">
+          <div class="card h-100">
+            <img src="images/<?php echo $activity['image']; ?>" class="card-img-top" alt="..." style="object-fit: cover; height: 300px;">
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title"><?php echo $activity['title']; ?></h5>
               <p class="card-text"><?php echo $activity['description']; ?></p>
-              <a href="#" class="btn btn-primary mt-auto">En savoir plus</a>
+              <a href="#" class="mt-auto btn btn-primary">En savoir plus</a>
             </div>
           </div>
         </div>
       <?php endforeach; ?>
     </div>
+  </div>
 </section>
 <!-- end activities -->
+
 <!-- start ateliers -->
 <section id="ateliers">
   <div class="container mb-5 mt-5">

@@ -51,6 +51,12 @@ if (isset($_GET["logout"])) {
             >
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="../admin_panel.php">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="activites/index.php">Activités</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="?logout">Logout</a>
           </li>
         </ul>
