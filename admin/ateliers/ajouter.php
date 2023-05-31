@@ -5,21 +5,33 @@ require_once '../../config/bdd.php';
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
-    $nom = $_POST["nom"];
-    $prenom = $_POST["prenom"];
-    $email = $_POST["email"];
-    $telephone = $_POST["telephone"];
+    $intitule = $_POST["intitule"];
+    $description = $_POST["description"];
+    $formateur = $_POST["formateur"];
+
+    // Vérifier si un fichier a été uploadé
+    if (isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
+        $image = $_FILES["image"]["name"];
+        $image_tmp = $_FILES["image"]["tmp_name"];
+        $image_path = "../../images/" . $image; // Spécifiez le chemin d'accès approprié
+
+        // Déplacer le fichier uploadé vers le dossier de destination
+        move_uploaded_file($image_tmp, $image_path);
+    } else {
+        // Gérer l'erreur si aucun fichier n'a été uploadé
+        $image = "default.jpg"; // Spécifiez une image par défaut ou un autre comportement souhaité
+    }
 
     // Préparer et exécuter la requête d'insertion
-    $stmt = $conn->prepare("INSERT INTO formateurs (Nom_form, prenom_form, Email_form, telephon_form) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $nom, $prenom, $email, $telephone);
+    $stmt = $conn->prepare("INSERT INTO ateliers (intitule_ate, image_ate, description_ate, ID_form_foreign) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("sssi", $intitule, $image, $description, $formateur);
     $stmt->execute();
 
     // Vérifier si l'insertion a réussi
     if ($stmt->affected_rows > 0) {
-        echo "Formateur enregistré avec succès!";
+        echo "Atelier enregistré avec succès!";
     } else {
-        echo "Une erreur s'est produite lors de l'enregistrement du formateur.";
+        echo "Une erreur s'est produite lors de l'enregistrement de l'atelier.";
     }
 
     // Fermer les ressources
@@ -30,24 +42,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php include("../layout.php"); ?>
 <div class="container">
-    <h2>Ajouter un formateur</h2>
+    <h2>Ajouter un atelier</h2>
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="nom">Nom :</label>
-            <input type="text" class="form-control" name="nom" id="nom">
+            <label for="intitule">Intitulé :</label>
+            <input type="text" class="form-control" name="intitule" id="intitule">
         </div>
         <div class="form-group">
-            <label for="prenom">Prénom :</label>
-            <input type="text" class="form-control" name="prenom" id="prenom">
+            <label for="description">Description :</label>
+            <textarea class="form-control" name="description" id="description"></textarea>
         </div>
         <div class="form-group">
-            <label for="email">Email :</label>
-            <input type="email" class="form-control" name="email" id="email">
+            <label for="image">Image :</label>
+            <input type="file" class="form-control-file" name="image" id="image">
         </div>
-        <div class="form-group">
-            <label for="telephone">Téléphone :</label>
-            <input type="text" class="form-control" name="telephone" id="telephone">
-        </div>
+            <div class="form-group">
+                <label for="formateur">Formateur :</label>
+                <select class="form-control" name="formateur" id="formateur">
+                    <?php
+
+                    // Récupérer tous les formateurs de la base de données
+                    $formateursSql = "SELECT * FROM formateurs";
+                    $formateursResult = mysqli_query($conn, $formateursSql);
+
+                    // Afficher les options du select avec les formateurs
+                    while ($formateur = mysqli_fetch_assoc($formateursResult)) {
+                        echo '<option value="' . $formateur['ID_form'] . '">' . $formateur['Nom_form'] . '</option>';
+                    }
+
+                    // Fermer la ressource
+                    mysqli_free_result($formateursResult);
+                    ?>
+                </select>
+            </div>
         <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
 </div>

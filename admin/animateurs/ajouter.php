@@ -11,16 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telephone = $_POST["telephone"];
 
     // Préparer et exécuter la requête d'insertion
-    $stmt = $conn->prepare("INSERT INTO formateurs (Nom_form, prenom_form, Email_form, telephon_form) VALUES (?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO animateurs (Nom_anim, prenom_anim, Email_anim, telephon_anim) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $nom, $prenom, $email, $telephone);
     $stmt->execute();
 
     // Vérifier si l'insertion a réussi
     if ($stmt->affected_rows > 0) {
-        header("location: index.php");
+        header('location: index.php');
         exit();
     } else {
-        echo "Une erreur s'est produite lors de l'enregistrement du formateur.";
+        echo "Une erreur s'est produite lors de l'ajout de l'animateur.";
     }
 
     // Fermer les ressources
@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php include("../layout.php"); ?>
 <div class="container">
-    <h2>Ajouter un formateur</h2>
-    <form method="POST" action="" enctype="multipart/form-data">
+    <h2>Ajouter un animateur</h2>
+    <form method="POST" action="">
         <div class="form-group">
             <label for="nom">Nom :</label>
             <input type="text" class="form-control" name="nom" id="nom">
