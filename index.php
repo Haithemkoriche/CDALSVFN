@@ -170,10 +170,10 @@ $conn->close();
           <img src="images/<?php echo $evenement['image_E']; ?>" alt="Événement 1">
           <h3><?php echo $evenement['intitule_E']; ?></h3>
           <p><?php echo $evenement['description_E']; ?></p>
+          <p><?php echo $evenement['date_d_E']; ?> jusqu'a <?php echo $evenement['date_f_E']; ?></p>
         </div>
       <?php endforeach; ?>
     </div>
-    <a href="evenements.html" class="btn"><u>Voir tous les événements</u></a>
   </div>
 </section>
 

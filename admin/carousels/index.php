@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
     <div class="container">
         <div class="row d-flex justify-content-between mt-2 mb-2">
             <h2>Liste des carousels</h2>
-            <a href="ajouter.php" class="btn btn-primary">Ajouter un atelier</a>
+            <a href="ajouter.php" class="btn btn-primary p-2">Ajouter un carousels</a>
         </div>
         <table class="table table-striped">
             <thead>
@@ -50,7 +50,8 @@ if ($result->num_rows > 0) {
 
 <?php include("../footer.html");
 } else {
-    echo "Aucun carousel trouvé.";
+    header('location: ajouter.php');
+    exit();
 }
 
 // Fermer les ressources

@@ -10,12 +10,12 @@ $participants = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <?php include("../layout.php"); ?>
-<div class="container">
+<div class="container overflow-auto">
     <div class="row d-flex justify-content-between mt-2 mb-2">
         <h2>Liste des participants</h2>
         <a href="ajouter.php" class="btn btn-primary mb-3">Ajouter un participant</a>
     </div>
-    <table class="table table-striped">
+    <table class="table table-striped ">
         <thead>
             <tr>
                 <th>ID</th>

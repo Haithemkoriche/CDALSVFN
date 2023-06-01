@@ -49,10 +49,10 @@ $conn->close();
 <?php include('layout.php'); ?>
 
 
-<div class="container mt-5" id="dash">
+<div class="container mt-5" id="">
   <div class="container mt-5">
-    <div class="row gap-sm-3 gap-lg-0">
-      <div class="col-md-12 col-lg-3">
+    <div class="row">
+      <div class="col-md-12 col-lg-3 mt-3">
         <div class="card bg-primary text-white">
           <div class="card-body">
             <h5 class="card-title"> <i class="fas fa-users"></i> Participantes</h5>
@@ -60,7 +60,7 @@ $conn->close();
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-lg-3">
+      <div class="col-md-12 col-lg-3 mt-3">
         <div class="card bg-success text-white">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-users"></i> Formateurs</h5>
@@ -68,7 +68,7 @@ $conn->close();
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-lg-3">
+      <div class="col-md-12 col-lg-3 mt-3">
         <div class="card bg-info text-white">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-list"></i> Activités</h5>
@@ -76,7 +76,7 @@ $conn->close();
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-lg-3">
+      <div class="col-md-12 col-lg-3 mt-3">
         <div class="card bg-warning text-dark">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-tools"></i> Ateliers</h5>
@@ -87,13 +87,13 @@ $conn->close();
     </div>
     <div class="row mt-4">
       <div class="col-md-6">
-        <div class="card">
+        <div class="card mt-2 mb-4 ">
           <div class="card-body">
             <h5 class="card-title"> <i class="fas fa-calendar-alt"></i> Événements </h5>
             <h2 class="card-text d-flex justify-content-between"><?php echo $evenementsCount; ?> <a href="evenements/" class=""><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
-        <div class="card mt-4">
+        <div class="card mt-2 mb-4 ">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-envelope animated faa-shake"></i>
               Messages </h5>
@@ -102,27 +102,19 @@ $conn->close();
         </div>
       </div>
       <div class="col-md-6">
-        <div class="card">
+        <div class="card mt-2 mb-4">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-user"></i> Animateurs </h5>
             <h2 class="card-text d-flex justify-content-between"><?php echo $animateursCount; ?><a href="Animateurs/" class=""><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
-        <div class="card mt-4">
+        <div class="card mt-2 mb-4 ">
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-play"></i> Carousels </h5>
             <h2 class="card-text d-flex justify-content-between"><?php echo $carouselsCount; ?><a href="Carousels/" class=""><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        Hello, world! This is a toast message.
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
 
