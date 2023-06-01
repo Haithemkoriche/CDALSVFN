@@ -173,9 +173,11 @@ $conn->close();
           <p><?php echo $evenement['date_d_E']; ?> jusqu'à <?php echo $evenement['date_f_E']; ?></p>
           <!-- <a href="inscription_evenement.php?id=<?php echo $evenement['ID_E']; ?>" class="btn btn-primary">Participer</a> -->
           <!-- Button pour ouvrir le modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inscriptionModal">
-            Participer
-          </button>
+          <div class="text-center"> <!-- Ajout de la classe "text-center" pour le centrage -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inscriptionModal">
+              Participer
+            </button>
+          </div>
 
           <!-- Modal -->
           <div class="modal fade" id="inscriptionModal" tabindex="-1" role="dialog" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
