@@ -170,14 +170,60 @@ $conn->close();
           <img src="images/<?php echo $evenement['image_E']; ?>" alt="Événement 1">
           <h3><?php echo $evenement['intitule_E']; ?></h3>
           <p><?php echo $evenement['description_E']; ?></p>
-          <p><?php echo $evenement['date_d_E']; ?> jusqu'a <?php echo $evenement['date_f_E']; ?></p>
+          <p><?php echo $evenement['date_d_E']; ?> jusqu'à <?php echo $evenement['date_f_E']; ?></p>
+          <!-- <a href="inscription_evenement.php?id=<?php echo $evenement['ID_E']; ?>" class="btn btn-primary">Participer</a> -->
+          <!-- Button pour ouvrir le modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inscriptionModal">
+            Participer
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="inscriptionModal" tabindex="-1" role="dialog" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="inscriptionModalLabel">Formulaire d'inscription</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="inscription_evenement.php" method="post">
+                    <div class="form-group">
+                      <label for="nom">Nom :</label>
+                      <input type="text" class="form-control" id="nom" name="nom" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="prenom">Prénom :</label>
+                      <input type="text" class="form-control" id="prenom" name="prenom" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email :</label>
+                      <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="telephone">Téléphone :</label>
+                      <input type="text" class="form-control" id="telephone" name="telephone" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="adresse">Adresse :</label>
+                      <input type="text" class="form-control" id="adresse" name="adresse" required>
+                    </div>
+                    <input type="hidden" name="evenement_id" value="<?php echo $evenement['ID_E']; ?>">
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       <?php endforeach; ?>
     </div>
   </div>
 </section>
-
 <!-- end evenement -->
+
 <!-- contact -->
 <section id="contact">
   <div class="container">
