@@ -36,6 +36,7 @@ $sql = "INSERT INTO participants (Nom_p, prenom_p, addres_p, Email_p, telephon_p
         VALUES ('$nom', '$prenom', '$adresse', '$email', '$telephone', '$dateNaissance', '$lieuNaissance', '$activiteId', '$groupe')";
 
 if ($conn->query($sql) === TRUE) {
+
   // Générer le fichier PDF
   require('fpdf/fpdf.php');
 
@@ -80,6 +81,7 @@ if ($conn->query($sql) === TRUE) {
 
   // Sauvegarder le fichier PDF
   $pdf->Output('form_data.pdf', 'D');
+  
 
   // Rediriger vers une autre page
   // header("Location: index.php");
