@@ -49,13 +49,13 @@
       $pdf->Cell(40, 10, 'Nom:', 0);
       $pdf->Cell(0, 10, $nom, 0, 1);
 
-      $pdf->Cell(40, 10, 'Prénom:', 0);
+      $pdf->Cell(40, 10, 'Prenom:', 0);
       $pdf->Cell(0, 10, $prenom, 0, 1);
 
       $pdf->Cell(40, 10, 'Email:', 0);
       $pdf->Cell(0, 10, $email, 0, 1);
 
-      $pdf->Cell(40, 10, 'Numéro Téléphone:', 0);
+      $pdf->Cell(40, 10, 'Numero Telephone:', 0);
       $pdf->Cell(0, 10, $telephone, 0, 1);
 
       $pdf->Cell(40, 10, 'Adresse:', 0);

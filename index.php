@@ -28,6 +28,16 @@ if ($result->num_rows > 0) {
     $carousels[] = $row;
   }
 }
+// Retrieving data from the "groupes" table
+$groupes = [];
+$sql = "SELECT * FROM groups";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+    $groupes[] = $row;
+  }
+}
 
 // Retrieving data from the "activities" table
 $activities = [];
@@ -127,7 +137,72 @@ $conn->close();
             <div class="card-body d-flex flex-column">
               <h5 class="card-title"><?php echo $activity['titre_act']; ?></h5>
               <p class="card-text"><?php echo $activity['description_act']; ?></p>
-              <a href="incrir.php" class="mt-auto btn btn-primary">Inscrire</a>
+              <button type="button" class="mt-auto btn btn-primary" data-toggle="modal" data-target="#inscriptionModal<?php echo $activity['ID_act']; ?>">
+                Inscrire
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal pour l'activité spécifique -->
+        <div class="modal fade" id="inscriptionModal<?php echo $activity['ID_act']; ?>" tabindex="-1" role="dialog" aria-labelledby="inscriptionModalLabel<?php echo $activity['ID_act']; ?>" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="inscriptionModalLabel<?php echo $activity['ID_act']; ?>">Formulaire d'inscription</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="d-flex justify-content-center">
+                  <form action="inscription_activite.php" method="POST">
+                    <div class="row">
+                      <div class="form-group col">
+                        <label for="nom">Nom :</label>
+                        <input type="text" class="form-control" id="nom" name="nom" required>
+                      </div>
+                      <div class="form-group col">
+                        <label for="prenom">Prénom :</label>
+                        <input type="text" class="form-control" id="prenom" name="prenom" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email :</label>
+                      <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="telephone">Téléphone :</label>
+                      <input type="text" class="form-control" id="telephone" name="telephone" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="adresse">Adresse :</label>
+                      <input type="text" class="form-control" id="adresse" name="adresse" required>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col">
+                        <label for="date_naissance">Date de naissance :</label>
+                        <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
+                      </div>
+                      <div class="form-group col">
+                        <label for="lieu_naissance">Lieu de naissance :</label>
+                        <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="groupe">Groupe :</label>
+                      <select class="form-control" id="groupe" name="groupe" required>
+                        <option value="">--choisis un group--</option>
+                        <?php foreach ($groupes as $groupe) : ?>
+                          <option value="<?php echo $groupe['ID_grp']; ?>"><?php echo $groupe['int_grp']; ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                    <input type="hidden" name="activite_id" value="<?php echo $activity['ID_act']; ?>">
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -136,6 +211,8 @@ $conn->close();
   </div>
 </section>
 <!-- end activities -->
+
+
 
 <!-- start ateliers -->
 <section id="ateliers">
