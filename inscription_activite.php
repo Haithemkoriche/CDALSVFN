@@ -11,6 +11,8 @@ $lieuNaissance = $_POST['lieu_naissance'];
 $groupe = $_POST['groupe'];
 $activiteId = $_POST['activite_id'];
 
+
+
 // Retrieving data from the "activities" table
 $intituleA = '';
 $sql1 = "SELECT titre_act FROM activities WHERE ID_act = $activiteId";
