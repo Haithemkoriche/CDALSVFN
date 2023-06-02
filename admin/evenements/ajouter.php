@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tmpFilePath = $_FILES["image"]["tmp_name"];
 
     // Déplacer le fichier vers un emplacement permanent
-    $targetPath = $image;
+    $targetPath = '../../images/'.$image;
     move_uploaded_file($tmpFilePath, $targetPath);
 
     // Préparer et exécuter la requête d'insertion des données

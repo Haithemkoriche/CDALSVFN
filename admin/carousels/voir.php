@@ -14,6 +14,7 @@ if ($result->num_rows > 0) {
     <?php include("../layout.php"); ?>
     <div class="container">
         <h2>Liste des carousels</h2>
+    <a href="index.php" class="btn btn-primary">Retour</a>
         <table class="table">
             <thead>
                 <tr>
@@ -32,7 +33,7 @@ if ($result->num_rows > 0) {
                     echo "<td>" . $row["ID_carousel"] . "</td>";
                     echo "<td>" . $row["titre_car"] . "</td>";
                     echo "<td>" . $row["description_car"] . "</td>";
-                    echo "<td><img src='" . $row["path_car"] . "' width='100'></td>";
+                    echo "<td><img src='../../images/slide/" . $row["path_car"] . "' width='100'></td>";
                     echo "<td>";
                     echo "<a href='modifier.php?id=" . $row["ID_carousel"] . "' class='btn btn-primary'>Modifier</a>";
                     echo "<a href='supprimer.php?id=" . $row["ID_carousel"] . "' class='btn btn-danger'>Supprimer</a>";

@@ -25,12 +25,12 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         $idAnimateur = $row["ID_Anim_foreign"];
     } else {
         // Rediriger vers la page de liste des événements si l'événement n'existe pas
-        header("Location: table.php");
+        header("Location: index.php");
         exit();
     }
 } else {
     // Rediriger vers la page de liste des événements si l'ID de l'événement n'est pas spécifié
-    header("Location: table.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -52,6 +52,7 @@ if ($animateurResult->num_rows == 1) {
 <?php include("../layout.php"); ?>
 <div class="container">
     <h2>Détails de l'événement</h2>
+    <a href="index.php" class="btn btn-primary">Retour</a>
     <table class="table">
         <tbody>
             <tr>
@@ -64,7 +65,7 @@ if ($animateurResult->num_rows == 1) {
             </tr>
             <tr>
                 <th>Image :</th>
-                <td><img src="<?php echo $image; ?>" alt="Image de l'événement" width="200"></td>
+                <td><img src="../../images/<?php echo $image; ?>" alt="Image de l'événement" width="200"></td>
             </tr>
             <tr>
                 <th>Date de début :</th>

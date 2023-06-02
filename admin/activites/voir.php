@@ -15,6 +15,7 @@ if (isset($_GET['id'])) {
 
 <?php include("../layout.php"); ?>
 <div class="container">
+<a href="index.php" class="btn btn-primary">Retour</a>
     <h2>Détails de l'activité</h2>
     <?php if ($activite) : ?>
         <div class="card">

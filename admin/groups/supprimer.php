@@ -12,7 +12,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
     $stmt->execute();
 
     // Rediriger vers la page de liste des groupes après la suppression
-    header("Location: table.php");
+    header("Location: index.php");
     exit();
 } else {
     // Rediriger vers la page de liste des groupes si l'ID du groupe n'est pas spécifié dans l'URL

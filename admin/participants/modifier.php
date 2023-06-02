@@ -25,7 +25,7 @@ if (isset($_GET["id"])) {
         $stmt->execute();
 
         // Rediriger vers la page de liste des participants après la modification
-        header("Location: table.php");
+        header("Location: index.php");
         exit();
     }
 

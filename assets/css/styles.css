@@ -1,18 +1,6 @@
-.carousel-img {
-    height: calc(100vh - 72px);
-}
-@media screen and (min-width : 767px) {
 
-    .carousel-caption {
-        top: 50%;
-        transform: translateY(-50%);
-    }
-}
-/* start ateliers */
-#ateliers {
-    background-color: #f9f9f9;
-    padding: 50px 0;
-}
+
+
 
 .atelier {
     background-color: #fff;

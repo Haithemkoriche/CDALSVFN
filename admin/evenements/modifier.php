@@ -23,7 +23,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         $stmt->execute();
 
         // Rediriger vers la page de liste des événements
-        header("Location: table.php");
+        header("Location: index.php");
         exit();
     }
 
@@ -45,7 +45,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         $idAnimateur = $row["ID_Anim_foreign"];
     } else {
         // Rediriger vers la page de liste des événements si l'événement n'existe pas
-        header("Location: table.php");
+        header("Location: index.php");
         exit();
     }
 
@@ -55,7 +55,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
     $animateurs = $stmt->get_result();
 } else {
     // Rediriger vers la page de liste des événements si l'ID de l'événement n'est pas spécifié
-    header("Location: table.php");
+    header("Location: index.php");
     exit();
 }
 ?>

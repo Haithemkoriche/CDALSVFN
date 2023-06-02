@@ -36,12 +36,12 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         $dateDebut = $row["date_deb_grp"];
     } else {
         // Rediriger vers la page de liste des groupes si le groupe n'existe pas
-        header("Location: table.php");
+        header("Location: index.php");
         exit();
     }
 } else {
     // Rediriger vers la page de liste des groupes si l'ID du groupe n'est pas spécifié dans l'URL
-    header("Location: table.php");
+    header("Location: index.php");
     exit();
 }
 ?>

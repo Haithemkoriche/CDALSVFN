@@ -14,6 +14,7 @@ if (isset($_GET["id"])) {
     $formateur = $result->fetch_assoc();
 
     // Vérifier si le formateur existe
+    
     if ($formateur) {
         echo "<h2>Formateur #" . $formateur["ID_form"] . "</h2>";
         echo "<p>Nom: " . $formateur["Nom_form"] . "</p>";
@@ -33,5 +34,6 @@ if (isset($_GET["id"])) {
     echo "ID du formateur non spécifié.";
 }
 ?>
+    <a href="index.php" class="btn btn-primary">Retour</a>
 
 <?php include("../footer.html"); ?>

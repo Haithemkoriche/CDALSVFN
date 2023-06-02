@@ -28,6 +28,7 @@ if (isset($_GET["id"])) {
 <?php include("../layout.php"); ?>
 <div class="container">
     <h2>Participant</h2>
+    <a href="index.php" class="btn btn-primary">Retour</a>
     <table class="table">
         <tbody>
             <tr>

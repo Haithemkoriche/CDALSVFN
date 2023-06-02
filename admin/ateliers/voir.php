@@ -38,5 +38,6 @@
     // Fermer la connexion à la base de données
     $conn->close();
     ?>
+    <a href="index.php" class="btn btn-primary">Retour</a>
 </div>
 <?php include("../footer.html"); ?>

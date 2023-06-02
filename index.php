@@ -83,7 +83,7 @@ $conn->close();
   <div class="carousel-inner">
     <?php foreach ($carousels as $key => $slide) : ?>
       <div class="carousel-item <?php echo ($key == 0) ? 'active' : ''; ?>" data-bs-interval="3000">
-        <img src="images/slide/<?php echo $slide['path_car']; ?>" class="d-block w-100 blur carousel-img" alt="...">
+        <img src="images/slide/<?php echo $slide['path_car']; ?>" class="d-block w-100 blur carousel-img" style="height: calc(100vh - 72px);" alt="...">
         <div class="carousel-caption">
           <h1><?php echo $slide['titre_car']; ?></h1>
           <p><?php echo $slide['description_car']; ?></p>
@@ -215,7 +215,7 @@ $conn->close();
 
 
 <!-- start ateliers -->
-<section id="ateliers">
+<section id="ateliers" class="bg-light py-5">
   <div class="container mb-5 mt-5">
     <h2 class="text-center mb-5 mt-5">Les ateliers proposés</h2>
     <div class="row">
