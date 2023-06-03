@@ -88,7 +88,7 @@ $conn->close();
           <h1><?php echo $slide['titre_car']; ?></h1>
           <p><?php echo $slide['description_car']; ?></p>
           <div class="d-grid row-gap-3">
-            <a href="/inscrir" class="btn btn-primary p-2">Inscrire</a>
+            <a href="#activités" class="btn btn-primary p-2">Inscrire</a>
             <a href="#contact" class="btn btn-light p-2">Contacter</a>
           </div>
         </div>
