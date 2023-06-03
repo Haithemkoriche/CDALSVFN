@@ -20,15 +20,34 @@ if (isset($_GET["id"])) {
         $idGroupe = $_POST["id_groupe"];
 
         // Préparer et exécuter la requête de mise à jour des données du participant
-        $stmt = $conn->prepare("UPDATE participants SET Nom_p = ?, prenom_p = ?, addres_p = ?, Email_p = ?, telephon_p = ?, date_n_p = ?, lieu_n_p = ?, ID_act_foreign = ?, ID_E_foreign = ?, ID_grp_foreign = ? WHERE ID_p = ?");
-        $stmt->bind_param("ssssssiiii", $nom, $prenom, $adresse, $email, $telephone, $dateNaissance, $lieuNaissance, $idactivite, $idEvenement, $idGroupe, $id);
+        $stmt = $conn->prepare("UPDATE participants SET Nom_p = ?, prenom_p = ?, addres_p = ?, Email_p = ?, telephon_p = ?, date_n_p = ?, lieu_n_p = ?, ID_act_foreign = ?, ID_grp_foreign = ? WHERE ID_p = ?");
+        $stmt->bind_param("sssssssiii", $nom, $prenom, $adresse, $email, $telephone, $dateNaissance, $lieuNaissance, $idactivite, $idGroupe, $id);
         $stmt->execute();
 
         // Rediriger vers la page de liste des participants après la modification
         header("Location: index.php");
         exit();
     }
+    // Retrieving data from the "activities" table
+    $activities = [];
+    $sql = "SELECT * FROM activities";
+    $result = $conn->query($sql);
 
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $activities[] = $row;
+        }
+    }
+    // Retrieving data from the "groupes" table
+    $groupes = [];
+    $sql = "SELECT * FROM groups";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $groupes[] = $row;
+        }
+    }
     // Préparer et exécuter la requête pour récupérer les informations du participant
     $stmt = $conn->prepare("SELECT participants.*, activities.titre_act, groups.int_grp FROM participants LEFT JOIN activities ON participants.ID_act_foreign = activities.ID_act LEFT JOIN groups ON participants.ID_grp_foreign = groups.ID_grp WHERE participants.ID_p = ?");
     $stmt->bind_param("i", $id);
