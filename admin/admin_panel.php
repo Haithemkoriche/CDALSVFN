@@ -109,7 +109,7 @@ $conn->close();
       <div class="col-md-6">
         <div class="card mt-2 mb-4">
           <div class="card-body">
-            <h5 class="card-title"><i class="fas fa-user"></i> Animateurs </h5>
+            <h5 class="card-title"><i class="fas fa-users"></i> Animateurs </h5>
             <h2 class="card-text d-flex justify-content-between"><?php echo $animateursCount; ?><a href="Animateurs/" class=""><i class="fas fa-arrow-right"></i></a></h2>
           </div>
         </div>
@@ -123,7 +123,7 @@ $conn->close();
     </div>
     <div class="card mt-2 mb-4 ">
       <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-play"></i> groups </h5>
+        <h5 class="card-title"><i class="fas fa-users"></i> groups </h5>
         <h2 class="card-text d-flex justify-content-between"><?php echo $groupsCount; ?><a href="groups/" class=""><i class="fas fa-arrow-right"></i></a></h2>
       </div>
     </div>

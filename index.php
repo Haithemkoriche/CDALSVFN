@@ -118,7 +118,6 @@ $conn->close();
           tellus
           venenatis magna, in venenatis lectus tellus eu sapien. Proin quis neque rutrum, lobortis felis eu,
           vestibulum nibh. Nullam interdum sem ac nunc sodales, nec finibus justo sagittis.</p>
-        <a href="about.html" class="btn btn-primary">En savoir plus</a>
       </div>
     </div>
   </div>
