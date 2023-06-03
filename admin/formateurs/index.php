@@ -12,8 +12,6 @@
         <th>Prénom</th>
         <th>Email</th>
         <th>Téléphone</th>
-        <th>Date de création</th>
-        <th>Date de modification</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -35,8 +33,6 @@
               echo '<td>' . $row['prenom_form'] . '</td>';
               echo '<td>' . $row['Email_form'] . '</td>';
               echo '<td>' . $row['telephon_form'] . '</td>';
-              echo '<td>' . $row['created_at'] . '</td>';
-              echo '<td>' . $row['updated_at'] . '</td>';
               echo '<td>';
               echo '<a href="voir.php?id=' . $row['ID_form'] . '" class="btn btn-primary btn-sm">Voir</a> ';
               echo '<a href="modifier.php?id=' . $row['ID_form'] . '" class="btn btn-success btn-sm">Modifier</a> ';

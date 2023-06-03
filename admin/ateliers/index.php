@@ -11,8 +11,6 @@
                 <th>Intitulé</th>
                 <th>Description</th>
                 <th>Image</th>
-                <th>Date de création</th>
-                <th>Date de modification</th>
                 <th>Formateur</th>
                 <th>Actions</th>
             </tr>
@@ -34,8 +32,6 @@
                     echo '<td>' . $row['intitule_ate'] . '</td>';
                     echo '<td>' . $row['description_ate'] . '</td>';
                     echo '<td><img src="../../images/' . $row['image_ate'] . '" width="50" height="50"></td>';
-                    echo '<td>' . $row['created_at'] . '</td>';
-                    echo '<td>' . $row['updated_at'] . '</td>';
                     echo '<td>' . $row['nom_form'] . '</td>';
                     echo '<td>';
                     echo '<a href="voir.php?id=' . $row['ID_ate'] . '" class="btn btn-primary btn-sm">Voir</a> ';

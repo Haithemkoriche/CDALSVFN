@@ -22,8 +22,6 @@
             echo '<h3>Intitulé : ' . $row['intitule_ate'] . '</h3>';
             echo '<p>Description : ' . $row['description_ate'] . '</p>';
             echo '<img src="../../images/' . $row['image_ate'] . '" width="200" height="200" alt="Image de l\'atelier">';
-            echo '<p>Date de création : ' . $row['created_at'] . '</p>';
-            echo '<p>Date de modification : ' . $row['updated_at'] . '</p>';
             echo '<p>Formateur : ' . $row['ID_form_foreign'] . '</p>';
         } else {
             echo '<p>Aucun atelier trouvé avec cet ID.</p>';

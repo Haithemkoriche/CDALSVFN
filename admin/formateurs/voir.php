@@ -21,8 +21,6 @@ if (isset($_GET["id"])) {
         echo "<p>Prénom: " . $formateur["prenom_form"] . "</p>";
         echo "<p>Email: " . $formateur["Email_form"] . "</p>";
         echo "<p>Téléphone: " . $formateur["telephon_form"] . "</p>";
-        echo "<p>Date de création: " . $formateur["created_at"] . "</p>";
-        echo "<p>Date de modification: " . $formateur["updated_at"] . "</p>";
     } else {
         echo "Formateur non trouvé.";
     }

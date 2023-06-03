@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             move_uploaded_file($image_tmp, $image_destination);
 
             // Insérer la nouvelle activité dans la base de données avec le nom de l'image
-            $sql = "INSERT INTO `activities` (`titre_act`, `description_act`, `image_act`, `ID_ate_foreign`, `created_at`, `updated_at`) VALUES ('$titre_act', '$description_act', '$image_name', '$id_atelier', NOW(), NOW())";
+            $sql = "INSERT INTO `activities` (`titre_act`, `description_act`, `image_act`, `ID_ate_foreign`) VALUES ('$titre_act', '$description_act', '$image_name', '$id_atelier')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
