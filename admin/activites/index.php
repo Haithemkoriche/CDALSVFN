@@ -9,6 +9,10 @@ $activites = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 
 <?php include("../layout.php"); ?>
+
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+</head>
 <div class="container">
     <h2>Liste des activités</h2>
     <a href="ajouter.php" class="btn btn-primary mb-3">Ajouter une activité</a>

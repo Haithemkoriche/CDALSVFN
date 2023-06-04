@@ -10,6 +10,9 @@ $participants = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <?php include("../layout.php"); ?>
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+</head>
 <div class="container overflow-auto">
     <div class="row d-flex justify-content-between mt-2 mb-2">
         <h2>Liste des participants</h2>

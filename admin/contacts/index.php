@@ -9,6 +9,9 @@ $result = $stmt->get_result();
 ?>
 
 <?php include("../layout.php"); ?>
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+</head>
 <div class="container">
     <h2>Liste des contacts</h2>
     <table class="table">

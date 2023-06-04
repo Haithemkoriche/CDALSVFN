@@ -12,6 +12,9 @@ if ($result->num_rows > 0) {
 ?>
 
     <?php include("../layout.php"); ?>
+    <head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+</head>
     <div class="container">
         <div class="row d-flex justify-content-between mt-2 mb-2">
             <h2>Liste des carousels</h2>
