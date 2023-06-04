@@ -31,10 +31,14 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
 ?>
 
 <?php include("../layout.php"); ?>
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+</head>
 <div class="container">
     <h2>Groupe <?php echo $intitule; ?></h2>
     <p><strong>Date de début :</strong> <?php echo $dateDebut; ?></p>
-    <a href="index.php" class="btn btn-primary">Retour</a>
+    <a href="index.php" class="btn btn-primary">Retour</a><a href="modifier.php?id=<?php echo $groupe["ID_grp"]; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                        <a href="supprimer.php?id=<?php echo $groupe["ID_grp"]; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>
 </div>
 
 <?php include("../footer.html"); ?>
