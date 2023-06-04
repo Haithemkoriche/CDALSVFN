@@ -111,7 +111,7 @@ $conn->close();
     <h2 style="text-align:center">À propos</h2>
     <div class="row">
       <div class="col-md-6">
-        <img src="images/rouina.jpg" class="rounded mx-auto d-block img-fluid" alt="" srcset="">
+        <img src="images/rouina.jpg" class="shadow-lg rounded mx-auto d-block img-fluid" alt="" srcset="" style="border-radius: 25% !important;">
       </div>
       <div class="col-md-6 m-md-auto mt-4">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, libero at auctor congue, enim

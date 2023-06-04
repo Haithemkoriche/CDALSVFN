@@ -100,7 +100,8 @@ $conn->close();
         </div>
         <div class="card mt-2 mb-4 ">
           <div class="card-body">
-            <h5 class="card-title"><i class="fas fa-envelope animated faa-shake"></i>
+            <h5 class="card-title">
+              <?php if ($contactsCount > 0) { ?><i class="fas fa-envelope animated faa-shake"></i><?php } else { ?><i class="fas fa-envelope"></i><?php } ?>
               Messages </h5>
             <h2 class="card-text d-flex justify-content-between"><?php echo $contactsCount; ?><a href="contacts/" class=""><i class="fas fa-arrow-right"></i></a></h2>
           </div>
