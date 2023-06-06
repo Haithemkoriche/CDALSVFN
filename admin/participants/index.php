@@ -22,7 +22,7 @@ $participants = $result->fetch_all(MYSQLI_ASSOC);
             <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i>  Ajouter un participant</a>
         </div>
     </div>
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
