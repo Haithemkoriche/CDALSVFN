@@ -12,11 +12,16 @@ $activites = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 <head>
     <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head>
-<div class="container">
-    <h2>Liste des activités</h2>
-    <a href="ajouter.php" class="btn btn-primary mb-3">Ajouter une activité</a>
-    <table class="table">
+<div class="container overflow-auto">
+    <div class="row justify-content-between mt-2 mb-2">
+        <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Liste des activités</h2>
+        <div class="col-4">
+            <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Ajouter une activité</a>
+        </div>
+    </div>
+    <table class="table table-striped ">
         <thead>
             <tr>
                 <th>Titre</th>
@@ -31,10 +36,10 @@ $activites = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <td><?php echo $activite['titre_act']; ?></td>
                     <td><?php echo $activite['description_act']; ?></td>
                     <td><?php echo $activite['intitule_ate']; ?></td>
-                    <td>
-                        <a href="voir.php?id=<?php echo $activite['ID_act']; ?>" class="btn btn-info btn-sm">Voir</a>
-                        <a href="modifier.php?id=<?php echo $activite['ID_act']; ?>" class="btn btn-primary btn-sm">Modifier</a>
-                        <a href="supprimer.php?id=<?php echo $activite['ID_act']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette activité?')">Supprimer</a>
+                    <td class="col-2">
+                        <a href="voir.php?id=<?php echo $activite["ID_act"]; ?>" class="btn btn-primary btn-sm mt-2 mb-2"><i class="fa-regular fa-eye"></i></a>
+                        <a href="modifier.php?id=<?php echo $activite["ID_act"]; ?>" class="btn btn-warning btn-sm mt-2 mb-2"><i class="fa fa-edit"></i></a>
+                        <a href="supprimer.php?id=<?php echo $activite["ID_act"]; ?>" class="btn btn-danger btn-sm mt-2 mb-2"><i class="fa fa-trash"></i> </a>
                     </td>
                 </tr>
             <?php endforeach; ?>

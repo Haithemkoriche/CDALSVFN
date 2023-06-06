@@ -39,54 +39,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <?php include("../layout.php"); ?>
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
 <div class="container">
-    <h2>Ajouter un participant</h2>
+    <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Ajouter un participant</h2>
     <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
-        <div class="form-group">
-            <label for="nom">Nom :</label>
+    <div class="row">
+        <div class="form-group mt-2 col-lg-6">
+            <label class="form-label" for="nom">Nom :</label>
             <input type="text" class="form-control" id="nom" name="nom" required>
         </div>
-        <div class="form-group">
-            <label for="prenom">Prénom :</label>
+        <div class="form-group mt-2 col-lg-6">
+            <label class="form-label" for="prenom">Prénom :</label>
             <input type="text" class="form-control" id="prenom" name="prenom" required>
+        </div> 
         </div>
-        <div class="form-group">
-            <label for="adresse">Adresse :</label>
-            <input type="text" class="form-control" id="adresse" name="adresse" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email :</label>
+        <div class="form-group mt-2">
+            <label class="form-label" for="email">Email :</label>
             <input type="email" class="form-control" id="email" name="email" required>
         </div>
-        <div class="form-group">
-            <label for="telephone">Téléphone :</label>
+        <div class="form-group mt-2">
+            <label class="form-label" for="telephone">Téléphone :</label>
             <input type="text" class="form-control" id="telephone" name="telephone" required>
         </div>
-        <div class="form-group">
-            <label for="date_naissance">Date de naissance :</label>
+        <div class="form-group mt-2">
+            <label class="form-label" for="adresse">Adresse :</label>
+            <input type="text" class="form-control" id="adresse" name="adresse" required>
+        </div>
+        <div class="row">
+        <div class="form-group mt-2 col-lg-6">
+            <label class="form-label" for="date_naissance">Date de naissance :</label>
             <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
         </div>
-        <div class="form-group">
-            <label for="lieu_naissance">Lieu de naissance :</label>
+        <div class="form-group mt-2 col-lg-6">
+            <label class="form-label" for="lieu_naissance">Lieu de naissance :</label>
             <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance" required>
         </div>
-        <div class="form-group">
-            <label for="id_activite">activité :</label>
+        </div>
+        <div class="form-group mt-2"> 
+            <label class="form-label" for="id_activite">activité :</label>
             <select class="form-control" id="id_activite" name="id_activite" required>
                 <?php foreach ($activities as $activite) : ?>
                     <option value="<?php echo $activite["ID_act"]; ?>"><?php echo $activite["titre_act"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
-        <div class="form-group">
-            <label for="id_groupe">Groupe :</label>
+        <div class="form-group mt-2">
+            <label class="form-label" for="id_groupe">Groupe :</label>
             <select class="form-control" id="id_groupe" name="id_groupe" required>
                 <?php foreach ($groupes as $groupe) : ?>
                     <option value="<?php echo $groupe["ID_grp"]; ?>"><?php echo $groupe["int_grp"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class=" mt-2 btn btn-primary">Ajouter</button>
     </form>
 </div>
 

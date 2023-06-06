@@ -10,15 +10,19 @@ $participants = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <?php include("../layout.php"); ?>
+
 <head>
-    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css"> 
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head>
 <div class="container overflow-auto">
-    <div class="row d-flex justify-content-between mt-2 mb-2">
-        <h2>Liste des participants</h2>
-        <a href="ajouter.php" class="btn btn-primary mb-3">Ajouter un participant</a>
+    <div class="row justify-content-between mt-2 mb-2">
+        <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Liste des participants</h2>
+        <div class="col-4">
+            <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i>  Ajouter un participant</a>
+        </div>
     </div>
-    <table class="table table-striped ">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
@@ -27,7 +31,7 @@ $participants = $result->fetch_all(MYSQLI_ASSOC);
                 <th>Email</th>
                 <th>telephone</th>
                 <th>Activité</th>
-                <th>Groupe</th>
+                <th>participant</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -41,11 +45,11 @@ $participants = $result->fetch_all(MYSQLI_ASSOC);
                     <td><?php echo $participant["telephon_p"]; ?></td>
                     <td><?php echo $participant["titre_act"]; ?></td>
                     <td><?php echo $participant["int_grp"]; ?></td>
-                    <td>
-                        <a href="voir.php?id=<?php echo $participant["ID_p"]; ?>" class="btn btn-primary btn-sm">Voir</a>
-                        <a href="modifier.php?id=<?php echo $participant["ID_p"]; ?>" class="btn btn-warning btn-sm">Modifier</a>
-                        <a href="supprimer.php?id=<?php echo $participant["ID_p"]; ?>" class="btn btn-danger btn-sm">Supprimer</a>
-                    </td>
+                    <td class="col-2">
+                        <a href="voir.php?id=<?php echo $participant["ID_p"]; ?>" class="btn btn-primary btn-sm mt-2 mb-2"><i class="fa-regular fa-eye"></i></a>
+                        <a href="modifier.php?id=<?php echo $participant["ID_p"]; ?>" class="btn btn-warning btn-sm mt-2 mb-2"><i class="fa fa-edit"></i></a>
+                        <a href="supprimer.php?id=<?php echo $participant["ID_p"]; ?>" class="btn btn-danger btn-sm mt-2 mb-2"><i class="fa fa-trash"></i> </a>
+                    </td> 
                 </tr>
             <?php endforeach; ?>
         </tbody>

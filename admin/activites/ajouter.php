@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Déplacer l'image téléchargée vers le dossier des images
             $image_destination = '../../images/' . $image_name;
             move_uploaded_file($image_tmp, $image_destination);
-
+ 
             // Insérer la nouvelle activité dans la base de données avec le nom de l'image
             $sql = "INSERT INTO `activities` (`titre_act`, `description_act`, `image_act`, `ID_ate_foreign`) VALUES ('$titre_act', '$description_act', '$image_name', '$id_atelier')";
             $result = mysqli_query($conn, $sql);
@@ -52,22 +52,22 @@ $ateliers = mysqli_fetch_all($result_ateliers, MYSQLI_ASSOC);
 ?>
 
 <?php include("../layout.php"); ?>
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
 <div class="container">
-    <h2>Ajouter une activité</h2>
+    <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Ajouter une activité</h2>
     <form method="POST" action="ajouter.php" enctype="multipart/form-data">
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="titre_act">Titre:</label>
             <input type="text" class="form-control" name="titre_act" id="titre_act">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="description_act">Description:</label>
             <textarea class="form-control" name="description_act" id="description_act"></textarea>
         </div>
-        <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="file" class="form-control-file" name="image" id="image">
-        </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="id_atelier">Atelier :</label>
             <select class="form-control" id="id_atelier" name="id_atelier" required>
                 <?php foreach ($ateliers as $atelier) : ?>
@@ -75,7 +75,11 @@ $ateliers = mysqli_fetch_all($result_ateliers, MYSQLI_ASSOC);
                 <?php endforeach; ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <div class="form-group mt-2">
+            <label for="image">Image:</label>
+            <input type="file" class="form-control-file" name="image" id="image">
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Ajouter</button>
     </form>
 </div>
 

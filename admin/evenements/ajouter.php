@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Préparer et exécuter la requête d'insertion des données
     $stmt = $conn->prepare("INSERT INTO evenements (intitule_E, description_E, image_E, date_d_E, date_f_E, ID_Anim_foreign) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssi", $intitule, $description, $targetPath, $dateDebut, $dateFin, $idAnimateur);
+    $stmt->bind_param("sssssi", $intitule, $description, $image, $dateDebut, $dateFin, $idAnimateur);
     $stmt->execute();
 
 

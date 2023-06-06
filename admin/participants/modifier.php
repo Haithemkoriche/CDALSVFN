@@ -68,54 +68,63 @@ if (isset($_GET["id"])) {
 ?>
 
 <?php include("../layout.php"); ?>
+
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head> 
 <div class="container">
-    <h2>Modifier le participant</h2>
+    <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Modifier le participant</h2>
     <form method="post" action="">
-        <div class="form-group">
-            <label for="nom">Nom :</label>
-            <input type="text" class="form-control" id="nom" name="nom" value="<?php echo $participant["Nom_p"]; ?>" required>
+        <div class="row">
+            <div class="form-group mt-2  col-lg-6">
+                <label class="form-label" for="nom">Nom :</label>
+                <input type="text" class="form-control" id="nom" name="nom" value="<?php echo $participant["Nom_p"]; ?>" required>
+            </div>
+            <div class="form-group mt-2  col-lg-6">
+                <label class="form-label" for="prenom">Prénom :</label>
+                <input type="text" class="form-control" id="prenom" name="prenom" value="<?php echo $participant["prenom_p"]; ?>" required>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="prenom">Prénom :</label>
-            <input type="text" class="form-control" id="prenom" name="prenom" value="<?php echo $participant["prenom_p"]; ?>" required>
-        </div>
-        <div class="form-group">
-            <label for="adresse">Adresse :</label>
-            <input type="text" class="form-control" id="adresse" name="adresse" value="<?php echo $participant["addres_p"]; ?>" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email :</label>
+        <div class="form-group mt-2 ">
+            <label class="form-label" for="email">Email :</label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo $participant["Email_p"]; ?>" required>
         </div>
-        <div class="form-group">
-            <label for="telephone">Téléphone :</label>
+        <div class="form-group mt-2 ">
+            <label class="form-label" for="telephone">Téléphone :</label>
             <input type="text" class="form-control" id="telephone" name="telephone" value="<?php echo $participant["telephon_p"]; ?>" required>
         </div>
-        <div class="form-group">
-            <label for="date_naissance">Date de naissance :</label>
+        <div class="form-group mt-2 ">
+            <label class="form-label" for="adresse">Adresse :</label>
+            <input type="text" class="form-control" id="adresse" name="adresse" value="<?php echo $participant["addres_p"]; ?>" required>
+        </div>
+        <div class="row">
+        <div class="form-group mt-2  col-lg-6">
+            <label class="form-label" for="date_naissance">Date de naissance :</label>
             <input type="date" class="form-control" id="date_naissance" name="date_naissance" value="<?php echo $participant["date_n_p"]; ?>" required>
         </div>
-        <div class="form-group">
-            <label for="lieu_naissance">Lieu de naissance :</label>
+        <div class="form-group mt-2  col-lg-6">
+            <label class="form-label" for="lieu_naissance">Lieu de naissance :</label>
             <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance" value="<?php echo $participant["lieu_n_p"]; ?>" required>
         </div>
-        <div class="form-group">
-            <label for="id_activite">Activité :</label>
+        </div>
+        <div class="form-group mt-2 ">
+            <label class="form-label" for="id_activite">Activité :</label>
             <select class="form-control" id="id_activite" name="id_activite" required>
                 <?php foreach ($activities as $activite) : ?>
                     <option value="<?php echo $activite["ID_act"]; ?>" <?php if ($activite["ID_act"] == $participant["ID_act_foreign"]) echo "selected"; ?>><?php echo $activite["titre_act"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
-        <div class="form-group">
-            <label for="id_groupe">Groupe :</label>
+        <div class="form-group mt-2 ">
+            <label class="form-label" for="id_groupe">Groupe :</label>
             <select class="form-control" id="id_groupe" name="id_groupe" required>
                 <?php foreach ($groupes as $groupe) : ?>
                     <option value="<?php echo $groupe["ID_grp"]; ?>" <?php if ($groupe["ID_grp"] == $participant["ID_grp_foreign"]) echo "selected"; ?>><?php echo $groupe["int_grp"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Modifier</button>
+        <button type="submit" class="btn btn-primary mt-2">Modifier</button>
     </form>
 </div>
 

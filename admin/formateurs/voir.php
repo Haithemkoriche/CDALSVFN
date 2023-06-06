@@ -15,19 +15,6 @@ if (isset($_GET["id"])) {
 
     // Vérifier si le formateur existe
 
-    if ($formateur) {
-        include("../layout.php");
-
-
-        echo "<h2>Formateur #" . $formateur["ID_form"] . "</h2>";
-        echo "<p>Nom: " . $formateur["Nom_form"] . "</p>";
-        echo "<p>Prénom: " . $formateur["prenom_form"] . "</p>";
-        echo "<p>Email: " . $formateur["Email_form"] . "</p>";
-        echo "<p>Téléphone: " . $formateur["telephon_form"] . "</p>";
-    } else {
-        echo "Formateur non trouvé.";
-    }
-
     // Fermer les ressources
     $stmt->close();
     $conn->close();
@@ -35,7 +22,41 @@ if (isset($_GET["id"])) {
     echo "ID du formateur non spécifié.";
 }
 ?>
- <a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> <a href="modifier.php?id=<?php echo $id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>
-    <a href="supprimer.php?id=<?php echo $id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>
 
+<?php include("../layout.php"); ?>
+
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
+<div class="container">
+    <div class="row justify-content-between mt-2 mb-2">
+        <h2 class="col-4"> Formateur </h2>
+        <div class="col-4">
+            <a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> <a href="modifier.php?id=<?php echo $id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>
+            <a href="supprimer.php?id=<?php echo $id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>
+        </div>
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td><?php echo $formateur["Nom_form"]; ?></td>
+            </tr>
+
+            <tr>
+                <th>Prénom</th>
+                <td><?php echo $formateur["prenom_form"]; ?></td>
+            </tr>
+            <tr>
+                <th> Email</th>
+                <td> <?php echo $formateur["Email_form"]; ?></td>
+            </tr>
+            <tr>
+                <th> Téléphone</th>
+                <td> <?php echo $formateur["telephon_form"]; ?></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <?php include("../footer.html"); ?>

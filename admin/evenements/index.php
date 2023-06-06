@@ -11,6 +11,7 @@ $result = $stmt->get_result();
 <?php include("../layout.php"); ?>
 <head>
     <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head>
 <div class="container">
     <div class="row d-flex justify-content-between mt-2 mb-2">

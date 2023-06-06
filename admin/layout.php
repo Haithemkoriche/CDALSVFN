@@ -16,7 +16,7 @@ $adminEmail = $_SESSION["admin_email"];
 // Logout functionality
 if (isset($_GET["logout"])) {
   session_destroy();
-  header("Location: index.html");
+  header("Location: index.php");
   exit();
 }
 ?>
@@ -35,7 +35,7 @@ if (isset($_GET["logout"])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css" />
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
 </head>
 
 <body>

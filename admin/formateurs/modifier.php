@@ -42,29 +42,33 @@ if (isset($_GET['id'])) {
 ?>
 
 <?php include("../layout.php"); ?>
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head> 
 <div class="container">
-    <h2>Modifier le formateur</h2>
+<h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Modifier le formateur</h2>
     <form method="POST" action="modifier.php?id=<?php echo $formateurId; ?>">
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="nom">Nom:</label>
             <input type="text" class="form-control" name="nom" id="nom" value="<?php echo $formateur['Nom_form']; ?>">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="prenom">Prénom:</label>
             <input type="text" class="form-control" name="prenom" id="prenom" value="<?php echo $formateur['prenom_form']; ?>">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="email">Email:</label>
             <input type="email" class="form-control" name="email" id="email" value="<?php echo $formateur['Email_form']; ?>">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2">
             <label for="telephone">Téléphone:</label>
             <input type="text" class="form-control" name="telephone" id="telephone" value="<?php echo $formateur['telephon_form']; ?>">
         </div>
-        <button type="submit" class="btn btn-primary">Modifier</button>
+        <button type="submit" class="btn btn-primary mt-2">Modifier</button>
     </form>
 </div>
-
+ 
 <?php
     } else {
         echo "Formateur non trouvé.";
