@@ -12,10 +12,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           VALUES (?, ?, ?, ?)";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("ssss", $name, $email, $phone, $message);
-  $stmt->execute();
+  if ($stmt->execute()) {
+    // Show success message in Bootstrap modal
+    echo '
+      <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="successModalLabel">Message envoyé avec succès</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Votre message a été envoyé avec succès.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var successModal = document.getElementById("successModal");
+          var bootstrapModal = new bootstrap.Modal(successModal);
+          bootstrapModal.show();
+        });
+      </script>
+    ';
+  }
 
   $stmt->close();
 }
+
 
 
 // Retrieving data from the "carousels" table
@@ -96,7 +126,7 @@ $conn->close();
     <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
         <div class="container">
             <a class="navbar-brand" href="#"><img src="images/logo1.png" width="90px" height="72px" alt="" srcset=""></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data -bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
