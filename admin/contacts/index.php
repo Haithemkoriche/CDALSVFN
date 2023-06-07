@@ -16,7 +16,7 @@ $result = $stmt->get_result();
 </head>
 <div class="container overflow-auto">
     <div class="row justify-content-between mt-2 mb-2">
-        <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a>Liste des contacts</h2>
+        <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a>  Liste des contacts</h2>
     <?php if (@$delete) : ?>
         <div class="alert alert-success" role="alert">
             Les données de contact a été suuprimer avec succès.
@@ -27,7 +27,7 @@ $result = $stmt->get_result();
             Les données de contact a été sauvgarder avec succès.
         </div>
     <?php endif; ?>
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -44,11 +44,11 @@ $result = $stmt->get_result();
                     <td><?php echo $row["name_contact"]; ?></td>
                     <td><?php echo $row["email_contact"]; ?></td>
                     <td><?php echo $row["phone_contact"]; ?></td>
-                    <td>
-                        <a href="voir.php?id=<?php echo $row["id_contact"]; ?>" class="btn btn-primary btn-sm">Voir</a>
-                        <a href="supprimer.php?id=<?php echo $row["id_contact"]; ?>" class="btn btn-danger btn-sm">Supprimer</a>
+                    <td class="col-2">
+                        <a href="voir.php?id=<?php echo $row["id_contact"]; ?>" class="btn btn-primary btn-sm mt-2 mb-2"><i class="fa-regular fa-eye"></i></a>
+                        <a href="supprimer.php?id=<?php echo $row["id_contact"]; ?>" class="btn btn-danger btn-sm mt-2 mb-2"><i class="fa fa-trash"></i> </a>
                     </td>
-                </tr>
+                </tr> 
             <?php endwhile; ?>
         </tbody>
     </table>

@@ -78,7 +78,7 @@ if (isset($_GET["id"])) {
 </head> 
 <div class="container"> 
     <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Modifier le participant</h2>
-    <?php if (@$success) : ?> 
+    <?php if (@$success) : ?>  
         <div class="alert alert-success" role="alert">
             Les données de participant a été modifier avec succès.
         </div>
@@ -98,7 +98,7 @@ if (isset($_GET["id"])) {
                 <label class="form-label" for="prenom">Prénom :</label>
                 <input type="text" class="form-control" id="prenom" name="prenom" value="<?php echo $participant["prenom_p"]; ?>" required>
             </div>
-        </div>
+        </div> 
         <div class="form-group mt-2 ">
             <label class="form-label" for="email">Email :</label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo $participant["Email_p"]; ?>" required>

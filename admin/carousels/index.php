@@ -20,9 +20,9 @@ if ($result->num_rows > 0) {
     </head>
     <div class="container overflow-auto">
         <div class="row justify-content-between mt-2 mb-2">
-            <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a>Liste des carousels</h2>
+            <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a>  Liste des carousels</h2>
             <div class="col-4">
-                <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i>Ajouter un carousels</a>
+                <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Ajouter un carousels</a>
             </div>
         </div>
         <?php if (@$delete) : ?>
@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
                 Les données de carrousel a été sauvgarder avec succès.
             </div>
         <?php endif; ?>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -54,15 +54,14 @@ if ($result->num_rows > 0) {
                     echo "<td>" . $row["titre_car"] . "</td>";
                     echo "<td>" . $row["description_car"] . "</td>";
                     echo "<td><img src='../../images/slide/" . $row["path_car"] . "' width='100'></td>";
-                    echo '<td>';
-                    echo '<a href="voir.php?id=' . $row['ID_carousel'] . '" class="btn btn-primary btn-sm">Voir</a> ';
-                    echo '<a href="modifier.php?id=' . $row['ID_carousel'] . '" class="btn btn-success btn-sm">Modifier</a> ';
-                    echo '<a href="supprimer.php?id=' . $row['ID_carousel'] . '" class="btn btn-danger btn-sm">Supprimer</a>';
+                    echo '<td class="col-2">';
+                    echo '<a href="modifier.php?id=' . $row['ID_carousel'] . '" class="btn btn-warning btn-sm mt-2 mb-2"><i class="fa fa-edit"></i></a> ';
+                    echo '<a href="supprimer.php?id=' . $row['ID_carousel'] . '" class="btn btn-danger btn-sm mt-2 mb-2"><i class="fa fa-trash"></i> </a>';
                     echo '</td>';
                     echo "</tr>";
                 }
                 ?>
-            </tbody>
+            </tbody> 
         </table>
     </div>
 

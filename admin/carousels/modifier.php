@@ -43,8 +43,8 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
     // Préparer et exécuter la requête de sélection du carousel spécifié
     $stmt = $conn->prepare("SELECT * FROM carousels WHERE ID_carousel = ?");
     $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt->execute(); 
+    $result = $stmt->get_result(); 
 
     // Vérifier s'il y a un résultat
     if ($result->num_rows == 1) {
@@ -60,7 +60,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head>
         <div class="container">
-            <h2>Modifier le carousel</h2>
+        <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Modifier le carousel</h2>
             <?php if (@$success) : ?>
         <div class="alert alert-success" role="alert">
             Les données de carrousel a été modifier avec succès.
@@ -72,16 +72,16 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         </div>
     <?php endif; ?>
             <form method="POST" action="" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="titre">Titre :</label>
+                <div class="form-group mt-2 mb-2">
+                    <label class="form-label" for="titre">Titre :</label>
                     <input type="text" class="form-control" name="titre" id="titre" value="<?php echo $titre; ?>">
                 </div>
-                <div class="form-group">
-                    <label for="description">Description :</label>
+                <div class="form-group mt-2 mb-2">
+                    <label class="form-label" for="description">Description :</label>
                     <textarea class="form-control" name="description" id="description"><?php echo $description; ?></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="image">Image :</label>
+                <div class="form-group mt-2 mb-2">
+                    <label class="form-label" for="image">Image :</label>
                     <input type="file" class="form-control-file" name="image" id="image">
                 </div>
                 <button type="submit" class="btn btn-primary">Modifier</button>

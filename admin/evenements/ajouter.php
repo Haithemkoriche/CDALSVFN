@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Préparer et exécuter la requête d'insertion des données
     $stmt = $conn->prepare("INSERT INTO evenements (intitule_E, description_E, image_E, date_d_E, date_f_E, lieu_E, ID_Anim_foreign) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssi", $intitule, $description, $image, $dateDebut, $dateFin, $lieu, $idAnimateur);
+    $stmt->bind_param("ssssssi", $intitule, $description, $image, $dateDebut, $dateFin, $lieu, $idAnimateur);
     $stmt->execute();
 
 
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: index.php?add=true");
     exit();
 }
-
+ 
 // Récupérer les animateurs disponibles
 $stmt = $conn->prepare("SELECT ID_Anim, nom_Anim FROM animateurs");
 $stmt->execute();
@@ -45,34 +45,34 @@ $animateurs = $stmt->get_result();
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head>
 <div class="container">
-    <h2>Ajouter un événement</h2>
+<h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Ajouter un événement</h2>
     <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label for="intitule">Intitulé :</label>
             <input type="text" class="form-control" id="intitule" name="intitule" required>
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label for="description">Description :</label>
             <textarea class="form-control" id="description" name="description" required></textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label for="image">Image :</label>
             <input type="file" class="form-control" id="image" name="image" required>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label for="date_debut">Date de début :</label>
             <input type="date" class="form-control" id="date_debut" name="date_debut" required>
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label for="date_fin">Date de fin :</label>
             <input type="date" class="form-control" id="date_fin" name="date_fin" required>
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label for="lieu">Lieu :</label>
             <input type="text" class="form-control" id="lieu" name="lieu" required>
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label for="id_animateur">Animateur :</label>
             <select class="form-control" id="id_animateur" name="id_animateur" required>
                 <?php while ($row = $animateurs->fetch_assoc()) : ?>

@@ -33,7 +33,7 @@ $participants = $result->fetch_all(MYSQLI_ASSOC);
             Les données de participant a été sauvgarder avec succès.
         </div>
     <?php endif; ?>
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered"> 
         <thead>
             <tr>
                 <th>ID</th>

@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head>
-<div class="container">
+<div class="container"> 
     <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Ajouter un participant</h2>
     <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
     <div class="row">
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" class="form-control" id="prenom" name="prenom" required>
         </div> 
         </div>
-        <div class="form-group mt-2">
+        <div class="form-group mt-2"> 
             <label class="form-label" for="email">Email :</label>
             <input type="email" class="form-control" id="email" name="email" required>
         </div>

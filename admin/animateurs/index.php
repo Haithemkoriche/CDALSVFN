@@ -17,9 +17,9 @@ $result = $stmt->get_result();
 </head>
 <div class="container overflow-auto">
     <div class="row justify-content-between mt-2 mb-2">
-        <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a>Liste des animateurs</h2>
+        <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a>&nbsp; Liste des animateurs</h2>
         <div class="col-4">
-            <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i>Ajouter un animateur</a>
+            <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Ajouter un animateur</a>
     </div>
     </div>
     <?php if (@$delete) : ?>
@@ -32,7 +32,7 @@ $result = $stmt->get_result();
             Les données de animateur a été sauvgarder avec succès.
         </div>
     <?php endif; ?>
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered"> 
         <thead>
             <tr>
                 <th>ID</th>
@@ -51,11 +51,11 @@ $result = $stmt->get_result();
                     <td><?php echo $animateur["prenom_anim"]; ?></td>
                     <td><?php echo $animateur["Email_anim"]; ?></td>
                     <td><?php echo $animateur["telephon_anim"]; ?></td>
-                    <td>
-                        <a href="voir.php?id=<?php echo $animateur["ID_Anim"]; ?>" class="btn btn-primary btn-sm">Voir</a>
-                        <a href="modifier.php?id=<?php echo $animateur["ID_Anim"]; ?>" class="btn btn-success btn-sm">Modifier</a>
-                        <a href="supprimer.php?id=<?php echo $animateur["ID_Anim"]; ?>" class="btn btn-danger btn-sm">Supprimer</a>
-                    </td>
+                    <td class="col-2">
+                        <a href="voir.php?id=<?php echo $animateur["ID_Anim"]; ?>" class="btn btn-primary btn-sm mt-2 mb-2"><i class="fa-regular fa-eye"></i></a>
+                        <a href="modifier.php?id=<?php echo $animateur["ID_Anim"]; ?>" class="btn btn-warning btn-sm mt-2 mb-2"><i class="fa fa-edit"></i></a>
+                        <a href="supprimer.php?id=<?php echo $animateur["ID_Anim"]; ?>" class="btn btn-danger btn-sm mt-2 mb-2"><i class="fa fa-trash"></i> </a>
+                    </td> 
                 </tr>
             <?php } ?>
         </tbody>

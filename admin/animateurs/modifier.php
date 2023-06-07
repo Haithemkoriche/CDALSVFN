@@ -21,14 +21,10 @@ if (isset($_GET["id"])) {
 
         // Vérifier si la mise à jour a réussi
         if ($stmt->affected_rows > 0) {
-            $success=true;
+            $success = true;
         } else {
-            $danger=true;
+            $danger = true;
         }
-
-        // Fermer les ressources
-        $stmt->close();
-        $conn->close();
     }
 
     // Préparer et exécuter la requête de sélection de l'animateur
@@ -42,45 +38,46 @@ if (isset($_GET["id"])) {
         $animateur = $result->fetch_assoc();
 ?>
 
-<?php include("../layout.php"); ?>
-<head>
-    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css"> 
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
-</head>
-<div class="container">
-    <h2>Modifier l'animateur</h2>
-    <?php if (@$success) : ?>
-        <div class="alert alert-success" role="alert">
-            Les données de animateur a été modifier avec succès.
-        </div>
-    <?php endif; ?>
-<?php if (@$danger) : ?>
-        <div class="alert alert-danger" role="alert">
-        Une erreur s'est produite lors de la mise à jour du animateur.
-        </div>
-    <?php endif; ?>
-    <form method="POST" action="">
-        <div class="form-group">
-            <label for="nom">Nom :</label>
-            <input type="text" class="form-control" name="nom" id="nom" value="<?php echo $animateur["Nom_anim"]; ?>">
-        </div>
-        <div class="form-group">
-            <label for="prenom">Prénom :</label>
-            <input type="text" class="form-control" name="prenom" id="prenom" value="<?php echo $animateur["prenom_anim"]; ?>">
-        </div>
-        <div class="form-group">
-            <label for="email">Email :</label>
-            <input type="email" class="form-control" name="email" id="email" value="<?php echo $animateur["Email_anim"]; ?>">
-        </div>
-        <div class="form-group">
-            <label for="telephone">Téléphone :</label>
-            <input type="text" class="form-control" name="telephone" id="telephone" value="<?php echo $animateur["telephon_anim"]; ?>">
-        </div>
-        <button type="submit" class="btn btn-primary">Modifier</button>
-    </form>
-</div>
+        <?php include("../layout.php"); ?>
 
-<?php include("../footer.html"); ?>
+        <head>
+            <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+            <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+        </head>
+        <div class="container">
+            <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Modifier l'animateur</h2>
+            <?php if (@$success) : ?>
+                <div class="alert alert-success" role="alert">
+                    Les données de animateur a été modifier avec succès.
+                </div>
+            <?php endif; ?>
+            <?php if (@$danger) : ?>
+                <div class="alert alert-danger" role="alert">
+                    Une erreur s'est produite lors de la mise à jour du animateur.
+                </div>
+            <?php endif; ?>
+            <form method="POST" action="">
+                <div class="form-group mt-2 mb-2">
+                    <label for="nom">Nom :</label>
+                    <input type="text" class="form-control" name="nom" id="nom" value="<?php echo $animateur["Nom_anim"]; ?>">
+                </div>
+                <div class="form-group mt-2 mb-2">
+                    <label for="prenom">Prénom :</label>
+                    <input type="text" class="form-control" name="prenom" id="prenom" value="<?php echo $animateur["prenom_anim"]; ?>">
+                </div>
+                <div class="form-group mt-2 mb-2">
+                    <label for="email">Email :</label>
+                    <input type="email" class="form-control" name="email" id="email" value="<?php echo $animateur["Email_anim"]; ?>">
+                </div>
+                <div class="form-group mt-2 mb-2">
+                    <label for="telephone">Téléphone :</label>
+                    <input type="text" class="form-control" name="telephone" id="telephone" value="<?php echo $animateur["telephon_anim"]; ?>">
+                </div>
+                <button type="submit" class="btn btn-primary">Modifier</button>
+            </form>
+        </div>
+
+        <?php include("../footer.html"); ?>
 
 <?php
     } else {

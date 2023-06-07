@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $danger=true;
     }
 
-    // Fermer les ressources
+    // Fermer les ressources 
     $stmt->close();
     $conn->close();
 }
@@ -35,26 +35,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head>
 <div class="container">
-    <h2>Ajouter un animateur</h2>
+<h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Ajouter un animateur</h2>
     <?php if (@$danger) : ?>
         <div class="alert alert-danger" role="alert">
             Le animateur a n'été pas ajouté avec succès.
         </div>
     <?php endif; ?>
     <form method="POST" action="">
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label for="nom">Nom :</label>
             <input type="text" class="form-control" name="nom" id="nom">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label for="prenom">Prénom :</label>
             <input type="text" class="form-control" name="prenom" id="prenom">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label for="email">Email :</label>
             <input type="email" class="form-control" name="email" id="email">
         </div>
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label for="telephone">Téléphone :</label>
             <input type="text" class="form-control" name="telephone" id="telephone">
         </div>

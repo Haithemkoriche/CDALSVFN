@@ -33,7 +33,7 @@ $result = $stmt->get_result();
             Les données de evenement a été sauvgarder avec succès.
         </div>
     <?php endif; ?>
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered"> 
         <thead>
             <tr>
                 <th>Intitulé</th>
@@ -68,11 +68,11 @@ $result = $stmt->get_result();
                         ?>
                     </td>
                     <td><?php echo $row["lieu_E"];  ?></td>
-                    <td>
-                        <a href="voir.php?id=<?php echo $row["ID_E"]; ?>" class="btn btn-primary btn-sm">Voir</a>
-                        <a href="modifier.php?id=<?php echo $row["ID_E"]; ?>" class="btn btn-warning btn-sm">Modifier</a>
-                        <a href="supprimer.php?id=<?php echo $row["ID_E"]; ?>" class="btn btn-danger btn-sm">Supprimer</a>
-                    </td>
+                    <td class="col-2">
+                        <a href="voir.php?id=<?php echo $row["ID_E"]; ?>" class="btn btn-primary btn-sm mt-2 mb-2"><i class="fa-regular fa-eye"></i></a>
+                        <a href="modifier.php?id=<?php echo $row["ID_E"]; ?>" class="btn btn-warning btn-sm mt-2 mb-2"><i class="fa fa-edit"></i></a>
+                        <a href="supprimer.php?id=<?php echo $row["ID_E"]; ?>" class="btn btn-danger btn-sm mt-2 mb-2"><i class="fa fa-trash"></i> </a>
+                    </td> 
                 </tr>
             <?php endwhile; ?>
         </tbody>
