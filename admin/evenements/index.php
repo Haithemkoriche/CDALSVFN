@@ -25,6 +25,7 @@ $result = $stmt->get_result();
                 <th>Date de début</th>
                 <th>Date de fin</th>
                 <th>Animateur</th>
+                <th>Lieu</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -51,6 +52,7 @@ $result = $stmt->get_result();
                         }
                         ?>
                     </td>
+                    <td><?php echo $row["lieu_E"];  ?></td>
                     <td>
                         <a href="voir.php?id=<?php echo $row["ID_E"]; ?>" class="btn btn-primary btn-sm">Voir</a>
                         <a href="modifier.php?id=<?php echo $row["ID_E"]; ?>" class="btn btn-warning btn-sm">Modifier</a>

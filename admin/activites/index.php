@@ -26,6 +26,7 @@ $activites = mysqli_fetch_all($result, MYSQLI_ASSOC);
             <tr>
                 <th>Titre</th>
                 <th>Description</th>
+                <th>Durée</th>
                 <th>Atelier</th>
                 <th>Actions</th>
             </tr>
@@ -35,6 +36,7 @@ $activites = mysqli_fetch_all($result, MYSQLI_ASSOC);
                 <tr>
                     <td><?php echo $activite['titre_act']; ?></td>
                     <td><?php echo $activite['description_act']; ?></td>
+                    <td><?php echo $activite['duree_act']; ?></td>
                     <td><?php echo $activite['intitule_ate']; ?></td>
                     <td class="col-2">
                         <a href="voir.php?id=<?php echo $activite["ID_act"]; ?>" class="btn btn-primary btn-sm mt-2 mb-2"><i class="fa-regular fa-eye"></i></a>

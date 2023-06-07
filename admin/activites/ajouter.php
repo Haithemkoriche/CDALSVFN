@@ -68,6 +68,10 @@ $ateliers = mysqli_fetch_all($result_ateliers, MYSQLI_ASSOC);
             <textarea class="form-control" name="description_act" id="description_act"></textarea>
         </div>
         <div class="form-group mt-2">
+            <label for="duree_act">La durée:</label>
+            <input class="form-control" name="duree_act" id="duree_act"></input>
+        </div>
+        <div cduree_actlass="form-group mt-2">
             <label for="id_atelier">Atelier :</label>
             <select class="form-control" id="id_atelier" name="id_atelier" required>
                 <?php foreach ($ateliers as $atelier) : ?>

@@ -22,6 +22,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         $image = $row["image_E"];
         $dateDebut = $row["date_d_E"];
         $dateFin = $row["date_f_E"];
+        $lieu = $row["lieu_E"];
         $idAnimateur = $row["ID_Anim_foreign"];
     } else {
         // Rediriger vers la page de liste des événements si l'événement n'existe pas
@@ -78,6 +79,10 @@ if ($animateurResult->num_rows == 1) {
             <tr>
                 <th>Date de fin :</th>
                 <td><?php echo $dateFin; ?></td>
+            </tr>
+            <tr>
+                <th>Lieu :</th>
+                <td><?php echo $lieu; ?></td>
             </tr>
             <tr>
                 <th>Animateur :</th>

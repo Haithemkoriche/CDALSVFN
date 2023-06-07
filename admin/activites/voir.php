@@ -26,6 +26,7 @@ if (isset($_GET['id'])) {
             <div class="card-body">
                 <h5 class="card-title"><?php echo $activite['titre_act']; ?></h5>
                 <p class="card-text"><?php echo $activite['description_act']; ?></p>
+                <p class="card-text"><?php echo $activite['duree_act']; ?></p>
                 <p class="card-text">Atelier: <?php echo $activite['intitule_ate']; ?></p>
                 <img src="../../images/<?php echo $activite['image_act']; ?>" class="card-img-top" alt="Image de l'activité">
             </div>

@@ -15,11 +15,12 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         $image = $_POST["image"];
         $dateDebut = $_POST["date_debut"];
         $dateFin = $_POST["date_fin"];
+        $lieu = $_POST["lieu"];
         $idAnimateur = $_POST["id_animateur"];
 
         // Préparer et exécuter la requête de mise à jour des données de l'événement spécifié
-        $stmt = $conn->prepare("UPDATE evenements SET intitule_E = ?, description_E = ?, image_E = ?, date_d_E = ?, date_f_E = ?, ID_Anim_foreign = ? WHERE ID_E = ?");
-        $stmt->bind_param("sssssii", $intitule, $description, $image, $dateDebut, $dateFin, $idAnimateur, $id);
+        $stmt = $conn->prepare("UPDATE evenements SET intitule_E = ?, description_E = ?, image_E = ?, date_d_E = ?, date_f_E = ?,lieu_E = ?, ID_Anim_foreign = ? WHERE ID_E = ?");
+        $stmt->bind_param("ssssssii", $intitule, $description, $image, $dateDebut, $dateFin,$lieu, $idAnimateur, $id);
         $stmt->execute();
 
         // Rediriger vers la page de liste des événements
@@ -42,6 +43,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         $image = $row["image_E"];
         $dateDebut = $row["date_d_E"];
         $dateFin = $row["date_f_E"];
+        $lieu = $row["lieu_E"];
         $idAnimateur = $row["ID_Anim_foreign"];
     } else {
         // Rediriger vers la page de liste des événements si l'événement n'existe pas
@@ -83,6 +85,10 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         <div class="form-group">
             <label for="date_fin">Date de fin :</label>
             <input type="date" class="form-control" id="date_fin" name="date_fin" value="<?php echo $dateFin; ?>">
+        </div>
+        <div class="form-group">
+            <label for="lieu">Lieu :</label>
+            <input type="text" class="form-control" id="lieu" name="lieu" value="<?php echo $lieu; ?>">
         </div>
         <div class="form-group">
             <label for="id_animateur">Animateur :</label>

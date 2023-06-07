@@ -51,14 +51,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     <?php endif; ?>
               <div class="form-group">
-                <label for="email">Email</label>
+                <label class="form-label" for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required />
               </div>
               <div class="form-group">
-                <label for="password">Password</label>
+                <label class="form-label" for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required />
               </div>
-              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit" class="btn btn-primary mt-2">Login</button>
             </form>
           </div>
         </div>

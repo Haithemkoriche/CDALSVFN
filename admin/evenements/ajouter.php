@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $image = $_POST["image"];
     $dateDebut = $_POST["date_debut"];
     $dateFin = $_POST["date_fin"];
+    $lieu = $_POST["lieu"];
     $idAnimateur = $_POST["id_animateur"];
     // Récupérer le nom du fichier téléchargé
     $image = $_FILES["image"]["name"];
@@ -22,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     move_uploaded_file($tmpFilePath, $targetPath);
 
     // Préparer et exécuter la requête d'insertion des données
-    $stmt = $conn->prepare("INSERT INTO evenements (intitule_E, description_E, image_E, date_d_E, date_f_E, ID_Anim_foreign) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssi", $intitule, $description, $image, $dateDebut, $dateFin, $idAnimateur);
+    $stmt = $conn->prepare("INSERT INTO evenements (intitule_E, description_E, image_E, date_d_E, date_f_E, lieu_E, ID_Anim_foreign) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssi", $intitule, $description, $image, $dateDebut, $dateFin, $lieu, $idAnimateur);
     $stmt->execute();
 
 
@@ -62,6 +63,10 @@ $animateurs = $stmt->get_result();
         <div class="form-group">
             <label for="date_fin">Date de fin :</label>
             <input type="date" class="form-control" id="date_fin" name="date_fin" required>
+        </div>
+        <div class="form-group">
+            <label for="lieu">Lieu :</label>
+            <input type="text" class="form-control" id="lieu" name="lieu" required>
         </div>
         <div class="form-group">
             <label for="id_animateur">Animateur :</label>

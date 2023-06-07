@@ -21,10 +21,11 @@ $ateliers = mysqli_fetch_all($result_ateliers, MYSQLI_ASSOC);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titre_act = $_POST['titre_act'];
     $description_act = $_POST['description_act'];
+    $duree_act = $_POST['duree_act'];
     $id_atelier = $_POST["id_atelier"];
 
     // Mettre à jour les informations de l'activité dans la base de données
-    $sql = "UPDATE `activities` SET `titre_act` = '$titre_act', `description_act` = '$description_act', `ID_ate_foreign` = '$id_atelier' WHERE `ID_act` = $id_act";
+    $sql = "UPDATE `activities` SET `titre_act` = '$titre_act', `description_act` = '$description_act',`duree_act`= '$duree_act', `ID_ate_foreign` = '$id_atelier' WHERE `ID_act` = $id_act";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -47,6 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-group">
             <label for="description_act">Description:</label>
             <textarea class="form-control" name="description_act" id="description_act"><?php echo $activite['description_act']; ?></textarea>
+        </div>
+        <div class="form-group">
+            <label for="duree_act">La Durée:</label>
+            <input class="form-control" name="duree_act" id="duree_act"><?php echo $activite['duree_act']; ?></input>
         </div>
         <div class="form-group">
             <label for="id_atelier">Atelier :</label>
