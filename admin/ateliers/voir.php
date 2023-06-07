@@ -1,7 +1,8 @@
 <?php include("../layout.php"); ?>
 <head>
-            <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
-        </head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
 <div class="container">
     <h2>Détails de l'atelier</h2>
     <?php

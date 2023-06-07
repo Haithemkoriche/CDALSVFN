@@ -25,13 +25,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <?php include("../layout.php"); ?>
+
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
 <div class="container">
-    <h2>Ajouter un groupe</h2>
+    <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Ajouter un groupe</h2>
     <?php if ($success) : ?>
         <div class="alert alert-success" role="alert">
             Le groupe a été ajouté avec succès.
         </div>
-    <?php endif; ?>
+    <?php endif; ?> 
     <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
         <div class="form-group">
             <label for="intitule">Intitulé :</label>
@@ -41,8 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="date_debut">Date de début :</label>
             <input type="date" class="form-control" id="date_debut" name="date_debut" value="<?php echo $dateDebut; ?>">
         </div>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-primary mt-2">Ajouter</button>
     </form>
 </div>
 
 <?php include("../footer.html"); ?>
+ 

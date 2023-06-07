@@ -1,4 +1,5 @@
-<?php include("../layout.php"); ?>
+<?php include("../layout.php");  ?>
+<?php require_once '../../config/action_verification.php'; ?> 
 
 <head>
   <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
@@ -11,7 +12,17 @@
       <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Ajouter formateur</a>
     </div>
   </div>
-  <table class="table table-striped">
+  <?php if (@$delete) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de formateur a été suuprimer avec succès.
+        </div>
+    <?php endif; ?>
+  <?php if (@$add) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de formateur a été sauvgarder avec succès.
+        </div>
+    <?php endif; ?>
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>ID</th>
@@ -26,7 +37,6 @@
       <?php
       // Inclure le fichier de configuration de la base de données
       require_once '../../config/bdd.php';
-
       // Récupérer tous les formateurs de la base de données
       $sql = "SELECT * FROM formateurs";
       $result = mysqli_query($conn, $sql);

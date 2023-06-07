@@ -13,7 +13,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
     $stmt->execute();
 
     // Rediriger vers la page de liste des contacts
-    header("Location: index.php");
+    header("Location: index.php?delete=true");
     exit();
 } else {
     echo "ID du contact non spécifié.";

@@ -24,9 +24,12 @@ if (isset($_GET["id"])) {
         $stmt->bind_param("sssssssiii", $nom, $prenom, $adresse, $email, $telephone, $dateNaissance, $lieuNaissance, $idactivite, $idGroupe, $id);
         $stmt->execute();
 
-        // Rediriger vers la page de liste des participants après la modification
-        header("Location: index.php");
-        exit();
+          // Vérifier si la mise à jour a réussi
+          if ($stmt->affected_rows > 0) {
+            $success=true;
+        } else {
+            $danger=true;
+        }
     }
     // Retrieving data from the "activities" table
     $activities = [];
@@ -75,6 +78,16 @@ if (isset($_GET["id"])) {
 </head> 
 <div class="container">
     <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Modifier le participant</h2>
+    <?php if (@$success) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de participant a été modifier avec succès.
+        </div>
+    <?php endif; ?>
+<?php if (@$danger) : ?>
+        <div class="alert alert-danger" role="alert">
+        Une erreur s'est produite lors de la mise à jour du participant.
+        </div>
+    <?php endif; ?>
     <form method="post" action="">
         <div class="row">
             <div class="form-group mt-2  col-lg-6">

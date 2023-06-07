@@ -1,12 +1,27 @@
 <?php include("../layout.php"); ?>
+<?php require_once '../../config/action_verification.php'; ?>
+
 <head>
-            <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
-        </head>
-<div class="container">
-    <div class="row d-flex justify-content-between mt-2 mb-2">
-        <h2>Liste des ateliers</h2>
-        <a href="ajouter.php" class="btn btn-primary">Ajouter un atelier</a>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
+<div class="container overflow-auto">
+    <div class="row justify-content-between mt-2 mb-2">
+        <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a>Liste des ateliers</h2>
+        <div class="col-4">
+            <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i>Ajouter un atelier</a>
+        </div>
     </div>
+    <?php if (@$delete) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de atelier a été suuprimer avec succès.
+        </div>
+    <?php endif; ?>
+    <?php if (@$add) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de atelier a été sauvgarder avec succès.
+        </div>
+    <?php endif; ?>
     <table class="table table-striped">
         <thead>
             <tr>

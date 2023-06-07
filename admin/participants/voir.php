@@ -41,7 +41,7 @@ if (isset($_GET["id"])) {
     </div>
     <table class="table table-bordered">
         <tbody>
-            <tr>
+            <tr> 
                 <th>Nom</th>
                 <td><?php echo $participant["Nom_p"]; ?></td>
             </tr>

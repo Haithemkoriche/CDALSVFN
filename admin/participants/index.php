@@ -1,6 +1,7 @@
 <?php
 // Inclure la configuration de la base de données
 require_once '../../config/bdd.php';
+require_once '../../config/action_verification.php';
 
 // Préparer et exécuter la requête pour récupérer la liste des participants avec les informations des clés étrangères
 $stmt = $conn->prepare("SELECT participants.*, activities.titre_act, groups.int_grp FROM participants LEFT JOIN activities ON participants.ID_act_foreign = activities.ID_act LEFT JOIN groups ON participants.ID_grp_foreign = groups.ID_grp");
@@ -19,9 +20,19 @@ $participants = $result->fetch_all(MYSQLI_ASSOC);
     <div class="row justify-content-between mt-2 mb-2">
         <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Liste des participants</h2>
         <div class="col-4">
-            <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i>  Ajouter un participant</a>
+            <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i>  Ajouter un participant</a> 
         </div>
     </div>
+    <?php if (@$delete) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de participant a été suuprimer avec succès.
+        </div>
+    <?php endif; ?>
+    <?php if (@$add) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de participant a été sauvgarder avec succès.
+        </div>
+    <?php endif; ?>
     <table class="table table-striped table-bordered">
         <thead>
             <tr>

@@ -12,7 +12,7 @@ if (isset($_GET["id"])) {
     $stmt->execute();
 
     // Rediriger vers la page de liste des participants après la suppression
-    header("Location: index.php");
+    header("Location: index.php?delete=true");
     exit();
 } else {
     echo "ID du participant non spécifié.";

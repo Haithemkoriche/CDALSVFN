@@ -23,16 +23,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Déplacer l'image téléchargée vers le dossier des images
             $image_destination = '../../images/' . $image_name;
             move_uploaded_file($image_tmp, $image_destination);
- 
+
             // Insérer la nouvelle activité dans la base de données avec le nom de l'image
             $sql = "INSERT INTO `activities` (`titre_act`, `description_act`, `image_act`, `ID_ate_foreign`) VALUES ('$titre_act', '$description_act', '$image_name', '$id_atelier')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
-                header("location: ../admin_panel.php");
+                header("Location: index.php?add=true");
                 exit();
             } else {
-                echo 'Erreur lors de l\'ajout de l\'activité: ' . mysqli_error($conn);
+                $danger = true;
             }
         } else {
             echo 'Le type de fichier n\'est pas autorisé. Veuillez choisir une image au format JPG, JPEG ou PNG.';
@@ -52,12 +52,18 @@ $ateliers = mysqli_fetch_all($result_ateliers, MYSQLI_ASSOC);
 ?>
 
 <?php include("../layout.php"); ?>
+
 <head>
     <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head>
 <div class="container">
     <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Ajouter une activité</h2>
+    <?php if (@$danger) : ?>
+        <div class="alert alert-danger" role="alert">
+            L'activité a n'été pas ajouté avec succès.
+        </div>
+    <?php endif; ?>
     <form method="POST" action="ajouter.php" enctype="multipart/form-data">
         <div class="form-group mt-2">
             <label for="titre_act">Titre:</label>

@@ -17,8 +17,22 @@ if (isset($_GET['id'])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 ?>
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css"> 
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
         <div class="container">
             <h2>Modifier l'atelier</h2>
+            <?php if (@$success) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de ateliers a été modifier avec succès.
+        </div>
+    <?php endif; ?>
+<?php if (@$danger) : ?>
+        <div class="alert alert-danger" role="alert">
+        Une erreur s'est produite lors de la mise à jour du ateliers.
+        </div>
+    <?php endif; ?>
             <form method="POST" action="" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="intitule">Intitulé :</label>
@@ -84,9 +98,9 @@ if (isset($_GET['id'])) {
 
             // Vérifier si la mise à jour a réussi
             if ($updateStmt->affected_rows > 0) {
-                echo "<p>Atelier modifié avec succès!</p>";
+                $success = true;
             } else {
-                echo "<p>Une erreur s'est produite lors de la modification de l'atelier.</p>";
+                $danger = true;
             }
 
             // Fermer la connexion à la base de données

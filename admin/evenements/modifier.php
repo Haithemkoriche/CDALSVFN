@@ -23,9 +23,12 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         $stmt->bind_param("ssssssii", $intitule, $description, $image, $dateDebut, $dateFin,$lieu, $idAnimateur, $id);
         $stmt->execute();
 
-        // Rediriger vers la page de liste des événements
-        header("Location: index.php");
-        exit();
+         // Vérifier si la mise à jour a réussi
+         if ($stmt->affected_rows > 0) {
+            $success=true;
+        } else {
+            $danger=true;
+        }
     }
 
     // Préparer et exécuter la requête pour récupérer les informations de l'événement spécifié
@@ -63,8 +66,22 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
 ?>
 
 <?php include("../layout.php"); ?>
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
 <div class="container">
     <h2>Modifier un événement</h2>
+    <?php if (@$success) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de evenement a été modifier avec succès.
+        </div>
+    <?php endif; ?>
+<?php if (@$danger) : ?>
+        <div class="alert alert-danger" role="alert">
+        Une erreur s'est produite lors de la mise à jour du evenement.
+        </div>
+    <?php endif; ?>
     <form action="<?php echo $_SERVER["PHP_SELF"] . "?id=" . $id; ?>" method="POST">
         <div class="form-group">
             <label for="intitule">Intitulé :</label>

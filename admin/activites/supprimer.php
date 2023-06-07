@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-        header("location: index.php");
+    header("Location: index.php?delete=true");
         exit();
     } else {
         echo 'Erreur lors de la suppression de l\'activité: ' . mysqli_error($conn);

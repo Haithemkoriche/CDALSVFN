@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérifier si l'insertion a réussi
     if ($stmt->affected_rows > 0) {
-        header("location: index.php");
-        exit();
+    header("Location: index.php?add=true");
+        exit(); 
     } else {
-        echo "Une erreur s'est produite lors de l'enregistrement du formateur.";
+        $danger=true;
     }
 
     // Fermer les ressources
@@ -36,6 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <div class="container">
     <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Ajouter un formateur</h2>
+    <?php if (@$danger) : ?>
+        <div class="alert alert-danger" role="alert">
+            Le formateur a n'été pas ajouté avec succès.
+        </div>
+    <?php endif; ?>
     <form method="POST" action="" enctype="multipart/form-data">
         <div class="form-group mt-2">
             <label for="nom">Nom :</label>

@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérifier si l'insertion a réussi
     if ($stmt->affected_rows > 0) {
-        header('location: index.php');
+    header("Location: index.php?add=true");
         exit();
     } else {
-        echo "Une erreur s'est produite lors de l'ajout de l'animateur.";
+        $danger=true;
     }
 
     // Fermer les ressources
@@ -30,8 +30,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <?php include("../layout.php"); ?>
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css"> 
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
 <div class="container">
     <h2>Ajouter un animateur</h2>
+    <?php if (@$danger) : ?>
+        <div class="alert alert-danger" role="alert">
+            Le animateur a n'été pas ajouté avec succès.
+        </div>
+    <?php endif; ?>
     <form method="POST" action="">
         <div class="form-group">
             <label for="nom">Nom :</label>

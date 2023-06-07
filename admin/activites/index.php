@@ -1,6 +1,7 @@
 <?php
 // Inclure le fichier de configuration de la base de données
 require_once '../../config/bdd.php';
+require_once '../../config/action_verification.php';
 
 // Récupérer la liste des activités depuis la base de données
 $sql = "SELECT * FROM `activities` INNER JOIN `ateliers` ON `activities`.`ID_ate_foreign` = `ateliers`.`ID_ate`";
@@ -21,7 +22,17 @@ $activites = mysqli_fetch_all($result, MYSQLI_ASSOC);
             <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Ajouter une activité</a>
         </div>
     </div>
-    <table class="table table-striped ">
+    <?php if (@$delete) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de l'activité a été suuprimer avec succès.
+        </div>
+    <?php endif; ?>
+    <?php if (@$add) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de l'activité a été sauvgarder avec succès.
+        </div>
+    <?php endif; ?>
+    <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>Titre</th>

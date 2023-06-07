@@ -17,9 +17,12 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         $stmt->bind_param("ssi", $intitule, $dateDebut, $id);
         $stmt->execute();
 
-        // Rediriger vers la page de visualisation du groupe après la mise à jour
-        header("Location: voir.php?id=".$id);
-        exit();
+         // Vérifier si la mise à jour a réussi
+         if ($stmt->affected_rows > 0) {
+            $success=true;
+        } else {
+            $danger=true;
+        }
     }
 
     // Préparer et exécuter la requête pour récupérer les informations du groupe spécifié
@@ -44,11 +47,26 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
     header("Location: index.php");
     exit();
 }
-?>
+?> 
 
 <?php include("../layout.php"); ?>
+
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head> 
 <div class="container">
-    <h2>Modifier le groupe <?php echo $intitule; ?></h2>
+    <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a>Modifier le groupe <?php echo $intitule; ?></h2>
+    <?php if (@$success) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de groupe a été modifier avec succès.
+        </div>
+    <?php endif; ?>
+<?php if (@$danger) : ?>
+        <div class="alert alert-danger" role="alert">
+        Une erreur s'est produite lors de la mise à jour du groupe.
+        </div>
+    <?php endif; ?>
     <form action="<?php echo $_SERVER["PHP_SELF"]."?id=".$id; ?>" method="POST">
         <div class="form-group">
             <label for="intitule">Intitulé :</label>
@@ -58,7 +76,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
             <label for="date_debut">Date de début :</label>
             <input type="date" class="form-control" id="date_debut" name="date_debut" value="<?php echo $dateDebut; ?>">
         </div>
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="submit" class="btn btn-primary mt-2">Enregistrer</button>
     </form>
 </div>
 

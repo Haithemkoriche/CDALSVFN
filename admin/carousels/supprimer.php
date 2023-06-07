@@ -14,7 +14,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
 
     // Vérifier si la suppression a réussi
     if ($stmt->affected_rows > 0) {
-        header("location: index.php");
+    header("Location: index.php?delete=true");
         exit();
     } else {
         echo "Une erreur s'est produite lors de la suppression du carousel.";

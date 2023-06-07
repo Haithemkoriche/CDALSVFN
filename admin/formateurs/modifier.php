@@ -21,9 +21,9 @@ if (isset($_GET['id'])) {
 
         // Vérifier si la mise à jour a réussi
         if ($stmt->affected_rows > 0) {
-            echo "Formateur mis à jour avec succès!";
+            $success=true;
         } else {
-            echo "Une erreur s'est produite lors de la mise à jour du formateur.";
+            $danger=true;
         }
 
         // Fermer les ressources
@@ -48,6 +48,16 @@ if (isset($_GET['id'])) {
 </head> 
 <div class="container">
 <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Modifier le formateur</h2>
+<?php if (@$success) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de Formateur a été modifier avec succès.
+        </div>
+    <?php endif; ?>
+<?php if (@$danger) : ?>
+        <div class="alert alert-danger" role="alert">
+        Une erreur s'est produite lors de la mise à jour du formateur.
+        </div>
+    <?php endif; ?>
     <form method="POST" action="modifier.php?id=<?php echo $formateurId; ?>">
         <div class="form-group mt-2">
             <label for="nom">Nom:</label>

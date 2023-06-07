@@ -47,12 +47,13 @@ if ($animateurResult->num_rows == 1) {
     $nomAnimateur = $animateurRow["nom_Anim"];
 } else {
     $nomAnimateur = "Inconnu";
-}
+} 
 ?>
 
 <?php include("../layout.php"); ?>
 <head>
     <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head>
 <div class="container">
     <h2>Détails de l'événement</h2>

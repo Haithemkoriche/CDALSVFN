@@ -34,9 +34,13 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
 
 <head>
     <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head>
 <div class="container">
-    <h2>Groupe <?php echo $intitule; ?></h2>
+    <div class="row justify-content-between mt-2 mb-2">
+        <h2>Groupe <?php echo $intitule; ?></h2>
+        </h2>
+    </div>
     <p><strong>Date de début :</strong> <?php echo $dateDebut; ?></p>
     <a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> <a href="modifier.php?id=<?php echo $id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>
     <a href="supprimer.php?id=<?php echo $id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>

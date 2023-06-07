@@ -33,11 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
 
     // Rediriger vers la page de liste des participants après l'ajout
-    header("Location: index.php");
+    header("Location: index.php?add=true");
     exit();
 }
 ?>
-
+ 
 <?php include("../layout.php"); ?>
 <head>
     <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">

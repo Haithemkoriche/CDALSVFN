@@ -25,8 +25,9 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         <?php include("../layout.php"); ?>
 
         <head>
-            <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
-        </head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
         <div class="container">
             <h2>Details du contact</h2>
             <a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> <a href="modifier.php?id=<?php echo $id; ?>" class="btn btn-warning btn-sm"> <i class="fa fa-edit"></i> </a>

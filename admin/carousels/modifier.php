@@ -33,14 +33,11 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
 
         // Vérifier si la mise à jour a réussi
         if ($stmt->affected_rows > 0) {
-            echo "Carousel mis à jour avec succès!";
+            $success=true;
         } else {
-            echo "Une erreur s'est produite lors de la mise à jour du carousel.";
+            $danger=true;
         }
 
-        // Fermer les ressources
-        $stmt->close();
-        $conn->close();
     }
 
     // Préparer et exécuter la requête de sélection du carousel spécifié
@@ -58,8 +55,22 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
         ?>
 
         <?php include("../layout.php"); ?>
+        <head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css"> 
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
         <div class="container">
             <h2>Modifier le carousel</h2>
+            <?php if (@$success) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de carrousel a été modifier avec succès.
+        </div>
+    <?php endif; ?>
+<?php if (@$danger) : ?>
+        <div class="alert alert-danger" role="alert">
+        Une erreur s'est produite lors de la mise à jour du carrousel.
+        </div>
+    <?php endif; ?>
             <form method="POST" action="" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="titre">Titre :</label>

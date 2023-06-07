@@ -14,6 +14,6 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
 }
 
 // Rediriger vers la page de liste des événements
-header("Location: index.php");
+    header("Location: index.php?delete=true");
 exit();
 ?>

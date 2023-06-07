@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Rediriger vers la page de liste des événements
-    header("Location: index.php");
+    header("Location: index.php?add=true");
     exit();
 }
 
@@ -40,6 +40,10 @@ $animateurs = $stmt->get_result();
 ?>
 
 <?php include("../layout.php"); ?>
+<head>
+    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css"> 
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+</head>
 <div class="container">
     <h2>Ajouter un événement</h2>
     <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
