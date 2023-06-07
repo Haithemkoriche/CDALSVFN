@@ -76,9 +76,9 @@ if (isset($_GET["id"])) {
     <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head> 
-<div class="container">
+<div class="container"> 
     <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Modifier le participant</h2>
-    <?php if (@$success) : ?>
+    <?php if (@$success) : ?> 
         <div class="alert alert-success" role="alert">
             Les données de participant a été modifier avec succès.
         </div>

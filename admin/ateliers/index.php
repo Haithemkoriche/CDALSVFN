@@ -7,9 +7,9 @@
 </head>
 <div class="container overflow-auto">
     <div class="row justify-content-between mt-2 mb-2">
-        <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a>Liste des ateliers</h2>
+        <h2 class="col-4"><a href="../admin_panel.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Liste des ateliers</h2>
         <div class="col-4">
-            <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i>Ajouter un atelier</a>
+            <a href="ajouter.php" class="btn btn-primary mb-3"><i class="fas fa-plus"></i>  Ajouter un atelier</a>
         </div>
     </div>
     <?php if (@$delete) : ?>
@@ -22,7 +22,12 @@
             Les données de atelier a été sauvgarder avec succès.
         </div>
     <?php endif; ?>
-    <table class="table table-striped">
+    <?php if (@$edit) : ?>
+        <div class="alert alert-success" role="alert">
+            Les données de atelier a été modifier avec succès.
+        </div>
+    <?php endif; ?>
+    <table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
@@ -51,10 +56,10 @@
                     echo '<td>' . $row['description_ate'] . '</td>';
                     echo '<td><img src="../../images/' . $row['image_ate'] . '" width="50" height="50"></td>';
                     echo '<td>' . $row['nom_form'] . '</td>';
-                    echo '<td>';
-                    echo '<a href="voir.php?id=' . $row['ID_ate'] . '" class="btn btn-primary btn-sm">Voir</a> ';
-                    echo '<a href="modifier.php?id=' . $row['ID_ate'] . '" class="btn btn-success btn-sm">Modifier</a> ';
-                    echo '<a href="supprimer.php?id=' . $row['ID_ate'] . '" class="btn btn-danger btn-sm">Supprimer</a>';
+                    echo '<td class="col-2">';
+                    echo '<a href="voir.php?id=' . $row['ID_ate'] . '" class="btn btn-primary btn-sm mt-2 mb-2"><i class="fa-regular fa-eye"></i></a> ';
+                    echo '<a href="modifier.php?id=' . $row['ID_ate'] . '" class="btn btn-warning btn-sm mt-2 mb-2"><i class="fa fa-edit"></i></a> ';
+                    echo '<a href="supprimer.php?id=' . $row['ID_ate'] . '" class="btn btn-danger btn-sm mt-2 mb-2"><i class="fa fa-trash"></i></a>';
                     echo '</td>';
                     echo '</tr>';
                 }

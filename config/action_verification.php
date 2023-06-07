@@ -5,3 +5,6 @@ if (isset($_GET["delete"])) {
 if (isset($_GET["add"])) {
     $add = true;
 }
+if (isset($_GET["edit"])) {
+    $edit = true;
+}

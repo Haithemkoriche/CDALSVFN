@@ -37,7 +37,7 @@ if (isset($_GET["id"])) {
             <a href="supprimer.php?id=<?php echo $id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>
         </div>
     </div>
-    <table class="table">
+    <table class="table table-bordered">
         <tbody>
             <tr>
                 <th>Nom</th>

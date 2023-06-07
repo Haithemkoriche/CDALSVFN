@@ -10,7 +10,7 @@
     require_once '../../config/bdd.php';
 
     // Vérifier si l'ID de l'atelier est passé en paramètre dans l'URL
-    if (isset($_GET['id'])) {
+    if (isset($_GET['id'])) { 
         $id = $_GET['id'];
 
         // Récupérer les informations de l'atelier avec l'ID spécifié

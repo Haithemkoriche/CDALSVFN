@@ -17,39 +17,43 @@ if (isset($_GET['id'])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 ?>
-<head>
-    <link rel="stylesheet" href="../../assets/fonts/css/all.min.css"> 
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
-</head>
-        <div class="container">
-            <h2>Modifier l'atelier</h2>
+        <?php include("../layout.php"); ?>
+
+        <head>
+            <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
+            <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+        </head>
+        <div class="container"> 
+    <h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Modifier l'atelier</h2>
             <?php if (@$success) : ?>
-        <div class="alert alert-success" role="alert">
-            Les données de ateliers a été modifier avec succès.
-        </div>
-    <?php endif; ?>
-<?php if (@$danger) : ?>
-        <div class="alert alert-danger" role="alert">
-        Une erreur s'est produite lors de la mise à jour du ateliers.
-        </div>
-    <?php endif; ?>
+                <div class="alert alert-success" role="alert">
+                    Les données de ateliers a été modifier avec succès.
+                </div>
+            <?php endif; ?>
+            <?php if (@$danger) : ?>
+                <div class="alert alert-danger" role="alert">
+                    Une erreur s'est produite lors de la mise à jour du ateliers.
+                </div>
+            <?php endif; ?>
+            <?php if (@$error) : echo @$error;
+            endif; ?>
             <form method="POST" action="" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="intitule">Intitulé :</label>
+                <div class="form-group mt-2 mb-2">
+                    <label class="form-label" for="intitule">Intitulé :</label>
                     <input type="text" class="form-control" name="intitule" id="intitule" value="<?php echo $row['intitule_ate']; ?>">
                 </div>
-                <div class="form-group">
-                    <label for="description">Description :</label>
+                <div class="form-group mt-2 mb-2">
+                    <label class="form-label" for="description">Description :</label>
                     <textarea class="form-control" name="description" id="description"><?php echo $row['description_ate']; ?></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="image">Image :</label>
+                <div class="form-group mt-2 mb-2">
+                    <label class="form-label" for="image">Image :</label>
                     <input type="file" class="form-control-file" name="image" id="image">
                     <p>Image actuelle :</p>
                     <img src="../../images/<?php echo $row['image_ate']; ?>" width="200" height="200" alt="Image de l'atelier">
                 </div>
-                <div class="form-group">
-                    <label for="formateur">Formateur :</label>
+                <div class="form-group mt-2 mb-2">
+                    <label class="form-label" for="formateur">Formateur :</label>
                     <select class="form-control" name="formateur" id="formateur">
                         <?php
                         // Récupérer tous les formateurs de la base de données
@@ -67,7 +71,7 @@ if (isset($_GET['id'])) {
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
             </form>
         </div>
-<?php
+        <?php
         // Vérifier si le formulaire a été soumis
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Récupérer les nouvelles données du formulaire
@@ -98,9 +102,11 @@ if (isset($_GET['id'])) {
 
             // Vérifier si la mise à jour a réussi
             if ($updateStmt->affected_rows > 0) {
-                $success = true;
+                header("location: index.php?edit=true");
+                exit();
             } else {
-                $danger = true;
+                $error=true;
+                $error = "Error pendant la modification ";
             }
 
             // Fermer la connexion à la base de données
@@ -119,3 +125,4 @@ if (isset($_GET['id'])) {
 // Fermer la connexion à la base de données
 $conn->close();
 ?>
+        <?php include("../footer.html"); ?>

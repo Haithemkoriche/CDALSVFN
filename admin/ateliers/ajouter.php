@@ -46,28 +46,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../../assets/fonts/css/all.min.css"> 
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 </head>
-<div class="container">
-    <h2>Ajouter un atelier</h2>
+<div class="container"> 
+<h2><a href="index.php" class="btn btn-primary btn-sm"> <i class="fa fa-arrow-left"></i> </a> Ajouter un atelier</h2>
     <?php if (@$danger) : ?>
         <div class="alert alert-danger" role="alert">
             Le atelier a n'été pas ajouté avec succès.
         </div>
     <?php endif; ?>
     <form method="POST" action="" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="intitule">Intitulé :</label>
+        <div class="form-group mt-2 mb-2">
+            <label class="form-label" for="intitule">Intitulé :</label>
             <input type="text" class="form-control" name="intitule" id="intitule">
         </div>
-        <div class="form-group">
-            <label for="description">Description :</label>
+        <div class="form-group mt-2 mb-2">
+            <label class="form-label" for="description">Description :</label>
             <textarea class="form-control" name="description" id="description"></textarea>
         </div>
-        <div class="form-group">
-            <label for="image">Image :</label>
+        <div class="form-group mt-2 mb-2">
+            <label class="form-label" for="image">Image :</label>
             <input type="file" class="form-control-file" name="image" id="image">
         </div>
-        <div class="form-group">
-            <label for="formateur">Formateur :</label>
+        <div class="form-group mt-2 mb-2">
+            <label class="form-label" for="formateur">Formateur :</label>
             <select class="form-control" name="formateur" id="formateur">
                 <?php
 
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
     </form>
 </div>
 

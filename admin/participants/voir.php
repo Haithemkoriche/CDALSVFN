@@ -30,7 +30,7 @@ if (isset($_GET["id"])) {
 <head>
     <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
-</head>
+</head> 
 <div class="container">
     <div class="row justify-content-between mt-2 mb-2">
         <h2 class="col-4">Participant</h2>

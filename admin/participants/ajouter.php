@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 ?>
- 
+  
 <?php include("../layout.php"); ?>
 <head>
     <link rel="stylesheet" href="../../assets/fonts/css/all.min.css">
