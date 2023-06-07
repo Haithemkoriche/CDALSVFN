@@ -16,7 +16,7 @@ $adminEmail = $_SESSION["admin_email"];
 // Logout functionality
 if (isset($_GET["logout"])) {
   session_destroy();
-  header("Location: index.php");
+  header("Location: ../index.php");
   exit();
 }
 ?>
