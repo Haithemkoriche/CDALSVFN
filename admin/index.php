@@ -58,6 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label class="form-label" for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required />
               </div>
+              <div class="form-group">
+              <a href="forgout.php">mot de pass oublié ?</a>
+              </div>
               <button type="submit" class="btn btn-primary mt-2">Login</button>
             </form>
           </div>
