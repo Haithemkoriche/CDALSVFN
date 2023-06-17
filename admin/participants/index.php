@@ -42,7 +42,7 @@ $participants = $result->fetch_all(MYSQLI_ASSOC);
                 <th>Email</th>
                 <th>telephone</th>
                 <th>Activité</th>
-                <th>participant</th>
+                <th>groupe</th>
                 <th>Action</th>
             </tr>
         </thead>
