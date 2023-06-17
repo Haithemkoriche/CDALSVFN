@@ -1,14 +1,33 @@
-<?php require_once("../config/bdd.php"); ?>
-<?php
+<?php 
+require_once "../config/bdd.php";
+require_once "../vendor/autoload.php";
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require '../vendor/PHPMailer/PHPMailer/src/Exception.php';
+require '../vendor/PHPMailer/PHPMailer/src/PHPMailer.php';
+require '../vendor/PHPMailer/PHPMailer/src/SMTP.php';
+
 $to_email = "korichehaithem2018@gmail.com";
 $subject = "Simple Email Testing via PHP";
-$body = "Hello,nn It is a testing email sent by PHP Script";
-$headers = "From: sender\'s email";
-// Check if the form is submitted
+$body = "Hello,\nIt is a testing email sent by PHP Script";
+
+// Initialize PHPMailer
+$mail = new PHPMailer();
+$mail->isSMTP();
+$mail->Host = "smtp.gmail.com";
+$mail->SMTPAuth = true;
+$mail->Username = "webgeniusalgerie@gmail.com";
+$mail->Password = "@Genius123";
+$mail->SMTPSecure = "tls";
+$mail->Port = 587;
+
+$mail->setFrom("webgeniusalgerie@gmail.com");
+$mail->addAddress($to_email);
+$mail->Subject = $subject;
+$mail->Body = $body;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST["email"];
-
-  // Prepare the SQL statement
   $sql = "SELECT * FROM admins WHERE email = ?";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("s", $email);
@@ -17,13 +36,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($result->num_rows == 1) {
     $row = $result->fetch_assoc();
     // Admin credentials are valid, set session and redirect to admin panel
-    mail($to_email, $subject, $body, $headers);
-  } else { // Admin credentials are invalid, show error message 
+    if ($mail->send()) {
+      $send_success = true;
+    } else {
+      $send_failed = true;
+      echo "Mailer Error: " . $mail->ErrorInfo;
+    }
+    
+  } else {
+    // Admin credentials are invalid, show error message
     $danger = true;
-  } // Close the statement and database connection
+  }
   $stmt->close();
   $conn->close();
 }
+
 ?>
 
 <head>
@@ -43,6 +70,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if (@$danger) : ?>
               <div class="alert alert-danger" role="alert">
                 Invalid email.
+              </div>
+            <?php endif; ?>
+            <?php if (@$send_success) : ?>
+              <div class="alert alert-success" role="alert">
+                Nous avons envoyer le mot de pass dans votre mail.
+              </div>
+            <?php endif; ?>
+            <?php if (@$send_failed) : ?>
+              <div class="alert alert-danger" role="alert">
+                error .
               </div>
             <?php endif; ?>
             <div class="form-group">
